@@ -12,7 +12,50 @@ npm i -D gulpack
 
 ##Configuration
 
-Edit `gulpfile.babel.js` as you like.
+###package.json
+
+```json
+"devDependencies": {
+  "babel": "^5.6.23",
+  "babelify": "^6.1.3",
+  "browser-sync": "^2.7.13",
+  "browserify": "^10.2.6",
+  "del": "^1.2.0",
+  "gulp": "^3.9.0",
+  "gulp-autoprefixer": "^2.3.1",
+  "gulp-babel": "^5.1.0",
+  "gulp-cached": "^1.1.0",
+  "gulp-changed": "^1.2.1",
+  "gulp-consolidate": "^0.1.2",
+  "gulp-iconfont": "^3.0.2",
+  "gulp-if": "^1.2.5",
+  "gulp-ignore": "^1.2.1",
+  "gulp-imagemin": "^2.3.0",
+  "gulp-jade": "^1.0.1",
+  "gulp-load-plugins": "^0.10.0",
+  "gulp-notify": "^2.2.0",
+  "gulp-plumber": "^1.0.1",
+  "gulp-rename": "^1.2.2",
+  "gulp-sass": "^2.0.4",
+  "gulp-sourcemaps": "^1.5.2",
+  "gulp-svg-sprite": "^1.2.5",
+  "gulp-uglify": "^1.2.0",
+  "gulp-util": "^3.0.6",
+  "gulp-watch": "^4.3.2",
+  "gulp-webserver": "^0.9.1",
+  "gulp.spritesmith": "^3.8.2",
+  "imagemin-pngquant": "^4.1.2",
+  "lodash": "^3.10.0",
+  "pretty-hrtime": "^1.0.0",
+  "run-sequence": "^1.1.1",
+  "vinyl-buffer": "^1.0.0",
+  "vinyl-paths": "^1.0.0",
+  "vinyl-source-stream": "^1.1.0",
+  "watchify": "^3.2.3"
+}
+```
+
+###gulpfile.babel.js
 
 ```js
 import gulp from 'gulp';
