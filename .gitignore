@@ -115,6 +115,8 @@ node_modules
 .lock-wscript
 
 
+lib
+
 test/dest/*
 !test/dest/.gitkeep
 
