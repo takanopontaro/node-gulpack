@@ -2,7 +2,7 @@ import gulp     from 'gulp';
 import sequence from 'run-sequence';
 
 
-export default class extends require('../base') {
+class Task extends require('./_base') {
 
   constructor() {
     super();
@@ -12,8 +12,8 @@ export default class extends require('../base') {
     };
   }
 
-  static task(conf) {
-    let ins = super.task(conf);
+  static register(conf) {
+    let ins = super.register(conf);
     let {name, preTasks, tasks} = ins.conf;
     gulp.task(name, preTasks, cb => {
       sequence(...tasks, cb);
@@ -21,3 +21,7 @@ export default class extends require('../base') {
     return ins;
   }
 }
+
+
+
+export default Task.handler.bind(Task);

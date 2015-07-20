@@ -7,18 +7,26 @@
     "type": "git",
     "url": "https://github.com/takanopontaro/node-gulpack.git"
   },
-  "main": "lib/main.js",
+  "bin": {
+    "gulpack": "./bin/main.js"
+  },
+  "main": "main.js",
   "files": [
-    "lib"
+    "main.js",
+    "tasks",
+    "bin"
   ],
   "scripts": {
-    "watch": "babel src --watch --out-dir lib",
-    "build": "babel src --out-dir lib",
+    "build": "babel src/main.js -o main.js && babel src/tasks --out-dir tasks && babel src/bin --out-dir bin",
     "test": "gulp --gulpfile ./test/gulpfile.babel.js"
   },
   "directories": {
     "test": "test/"
   },
+  "keywords": [
+    "gulp",
+    "plugin"
+  ],
   "author": "takanopontaro",
   "license": "MIT",
   "bugs": {
@@ -62,5 +70,7 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "minimist": "^1.1.1"
+  }
 }

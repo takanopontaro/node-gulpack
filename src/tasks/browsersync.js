@@ -3,7 +3,7 @@ import gulp from 'gulp';
 let browserSync = require('browser-sync').create();
 
 
-export default class extends require('../base') {
+class Task extends require('./_base') {
 
   constructor() {
     super();
@@ -13,8 +13,8 @@ export default class extends require('../base') {
     };
   }
 
-  static task(conf) {
-    let ins = super.task(conf);
+  static register(conf) {
+    let ins = super.register(conf);
     let {name, preTasks, options} = ins.conf;
     gulp.task(name, preTasks, () => {
       browserSync.init(options);
@@ -22,3 +22,7 @@ export default class extends require('../base') {
     return ins;
   }
 }
+
+
+
+export default Task.handler.bind(Task);

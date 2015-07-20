@@ -8,7 +8,7 @@ import browserify from 'browserify';
 let $ = require('gulp-load-plugins')();
 
 
-export default class extends require('../base') {
+class Task extends require('./_base') {
 
   constructor() {
     super();
@@ -66,8 +66,8 @@ export default class extends require('../base') {
       });
   }
 
-  static task(conf) {
-    let ins = super.task(conf);
+  static register(conf) {
+    let ins = super.register(conf);
     let {name, preTasks} = ins.conf;
     ins.init().setTransforms();
     gulp.task(name, preTasks, () => {
@@ -76,3 +76,7 @@ export default class extends require('../base') {
     return ins;
   }
 }
+
+
+
+export default Task.handler.bind(Task);

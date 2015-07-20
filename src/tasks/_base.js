@@ -35,10 +35,15 @@ export default class {
     this._name = str;
   }
 
-  static task(conf) {
+  static register(conf) {
     let ins = new this();
     ins.conf.name = this.defaultTaskName;
     Object.assign(ins.conf, conf);
     return ins;
+  }
+
+  static handler(conf) {
+    if (conf !== undefined) return this.register(conf);
+    return this;
   }
 }

@@ -1,7 +1,7 @@
 import watchify from 'watchify';
 
 
-export default class extends require('./browserify') {
+class Task extends require('./browserify')() {
 
   bundleConf() {
     return Object.assign({}, watchify.args, super.bundleConf());
@@ -14,3 +14,7 @@ export default class extends require('./browserify') {
     return this;
   }
 }
+
+
+
+export default Task.handler.bind(Task);

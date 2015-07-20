@@ -115,12 +115,14 @@ node_modules
 .lock-wscript
 
 
-lib
+/main.js
+/tasks
+/bin
 
-test/dest/*
-!test/dest/.gitkeep
+/test/dest/*
+!/test/dest/.gitkeep
 
-test/tmp/*
-!test/tmp/.gitkeep
+/test/tmp/*
+!/test/tmp/.gitkeep
 
 *.map
