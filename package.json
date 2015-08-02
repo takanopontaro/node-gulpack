@@ -2,35 +2,15 @@
   "name": "gulpack",
   "description": "Popular gulp-plugins packed as es6-classes for easy-to-use.",
   "version": "0.0.2",
-  "homepage": "https://github.com/takanopontaro/node-gulpack/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/takanopontaro/node-gulpack.git"
-  },
+  "author": "takanopontaro",
   "bin": {
     "gulpack": "./bin/main.js"
   },
-  "main": "main.js",
-  "files": [
-    "main.js",
-    "tasks",
-    "bin"
-  ],
-  "scripts": {
-    "build": "babel src/main.js -o main.js && babel src/tasks --out-dir tasks && babel src/bin --out-dir bin",
-    "test": "gulp --gulpfile ./test/gulpfile.babel.js"
-  },
-  "directories": {
-    "test": "test/"
-  },
-  "keywords": [
-    "gulp",
-    "plugin"
-  ],
-  "author": "takanopontaro",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/takanopontaro/node-gulpack/issues"
+  },
+  "dependencies": {
+    "minimist": "^1.1.1"
   },
   "devDependencies": {
     "babel": "^5.6.23",
@@ -38,6 +18,7 @@
     "browser-sync": "^2.7.13",
     "browserify": "^10.2.6",
     "del": "^1.2.0",
+    "fixpack": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-babel": "^5.1.0",
@@ -70,7 +51,31 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.3"
   },
-  "dependencies": {
-    "minimist": "^1.1.1"
+  "directories": {
+    "test": "test/"
+  },
+  "files": [
+    "main.js",
+    "tasks",
+    "bin"
+  ],
+  "homepage": "https://github.com/takanopontaro/node-gulpack/",
+  "keywords": [
+    "gulp",
+    "plugin"
+  ],
+  "license": {
+    "type": "MIT",
+    "url": "http://takanopontaro.mit-license.org/"
+  },
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack.git"
+  },
+  "scripts": {
+    "build": "babel src/main.js -o main.js && babel src/tasks --out-dir tasks && babel src/bin --out-dir bin",
+    "fixpack": "node node_modules/fixpack/bin/fixpack",
+    "test": "gulp --gulpfile ./test/gulpfile.babel.js"
   }
 }
