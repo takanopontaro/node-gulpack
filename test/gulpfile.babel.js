@@ -72,6 +72,7 @@ let sass = gulpack.sass({
 let jade = gulpack.jade({
   glob: './src/www/**/*.jade',
   dest: './dest',
+  extension: '.htm',
   options: {basedir: '.', pretty: true},
 });
 

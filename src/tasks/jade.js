@@ -11,6 +11,7 @@ class Task extends require('./_base') {
       preTasks: [],
       glob: null,
       dest: null,
+      extension: '.html',
       options: {},
     };
     this.useCache = true;
@@ -18,13 +19,16 @@ class Task extends require('./_base') {
 
   static register(conf) {
     let ins = super.register(conf);
-    let {name, preTasks, glob, dest, options} = ins.conf;
+    let {name, preTasks, glob, dest, extension, options} = ins.conf;
     gulp.task(name, preTasks, () => {
       return gulp.src(glob)
         .pipe($.if(ins.useCache, $.cached(name)))
         .pipe($.ignore.exclude(/\/_[^\/]+jade$/))
         .pipe($.plumber({errorHandler: ins.plumberHandler(name)}))
         .pipe($.jade(options))
+        .pipe($.rename(path => {
+          path.extname = extension;
+        }))
         .pipe(gulp.dest(dest));
     });
     return ins;

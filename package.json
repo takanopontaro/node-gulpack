@@ -1,7 +1,7 @@
 {
   "name": "gulpack",
   "description": "Popular gulp-plugins packed as es6-classes for easy-to-use.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "takanopontaro",
   "bugs": {
     "url": "https://github.com/takanopontaro/node-gulpack/issues"
