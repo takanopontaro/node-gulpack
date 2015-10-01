@@ -8,9 +8,6 @@ import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 
 
-import paths from 'vinyl-paths';
-
-
 export default {
 
   plugins: {},
@@ -28,6 +25,10 @@ export default {
   methods: {
 
     _: _,
+
+    configure(defaults, conf) {
+      return _.merge({}, defaults, conf);
+    },
 
     optionify(options) {
       switch (true) {
@@ -68,7 +69,7 @@ export default {
       util.log(...this.hrtimef(elapsed));
     },
 
-    sourcemap(enabled, method, options) {
+    sourcemaps(enabled, method, options) {
       return gulpif(enabled, sourcemaps[method](options));
     },
 
