@@ -69,6 +69,7 @@
     "url": "https://github.com/takanopontaro/node-gulpack.git"
   },
   "scripts": {
+    "start": "gulp",
     "build": "babel src/main.js -o main.js && babel src/tasks --out-dir tasks",
     "fixpack": "fixpack",
     "test": "gulp --gulpfile ./test/gulpfile.babel.js",
