@@ -48,15 +48,14 @@ export default {
       ];
     },
 
-    plumber(conf) {
-      if (!conf) {
-        conf = {
-          errorHandler: notify.onError({
-            title: this.name,
-            message: '<%= error.message %>',
-          }),
-        };
-      }
+    errorHandler() {
+      return notify.onError({
+        title: this.name,
+        message: '<%= error.message %>',
+      });
+    },
+
+    plumber(conf = {errorHandler: errorHandler()}) {
       return plumber(conf);
     },
 
