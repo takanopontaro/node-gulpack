@@ -1,0 +1,1 @@
+{"version":3,"sources":["js/main.es6"],"names":[],"mappings":";;AAAA,IAAI,KAAK,GAAG,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC;;;;;;;AAEzB,uBAAiB,KAAK,8HAAE;QAAf,IAAI;;AACX,WAAO,CAAC,GAAG,CAAC,IAAI,CAAC,CAAC;GACnB","file":"js/main.js","sourcesContent":["let items = [1, 2, 3, 4];\n\nfor (let item of items) {\n  console.log(item);\n}\n"],"sourceRoot":"/source/"}

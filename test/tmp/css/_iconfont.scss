@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "myfont";
+  src: url('../fonts/myfont.eot');
+  src: url('../fonts/myfont.eot?#iefix') format('eot'),
+    url('../fonts/myfont.woff') format('woff'),
+    url('../fonts/myfont.ttf') format('truetype'),
+    url('../fonts/myfont.svg#myfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.if:before {
+  display: inline-block;
+  font-family: "myfont";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.if-lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.if-2x { font-size: 2em; }
+.if-3x { font-size: 3em; }
+.if-4x { font-size: 4em; }
+.if-5x { font-size: 5em; }
+.if-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+.if-circle:before { content: "\EA01" }
+.if-rectangle:before { content: "\EA02" }
+.if-triangle:before { content: "\EA03" }

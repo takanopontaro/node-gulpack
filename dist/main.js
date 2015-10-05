@@ -3,6 +3,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+var _slice = Array.prototype.slice;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -57,9 +58,10 @@ exports['default'] = {
   methods: {
 
     _: _lodash2['default'],
+    util: _gulpUtil2['default'],
 
-    configure: function configure(defaults, conf) {
-      return _lodash2['default'].merge({}, defaults, conf);
+    clone: function clone() {
+      return _lodash2['default'].merge.apply(_lodash2['default'], [{}].concat(_slice.call(arguments)));
     },
 
     optionify: function optionify(options) {
@@ -73,12 +75,12 @@ exports['default'] = {
     },
 
     hrtimef: function hrtimef(elapsed) {
-      return [_gulpUtil2['default'].colors.green('[' + this.name + ']'), 'after', _gulpUtil2['default'].colors.magenta(elapsed)];
+      return [_gulpUtil2['default'].colors.green('[' + this.conf.name + ']'), 'after', _gulpUtil2['default'].colors.magenta(elapsed)];
     },
 
     errorHandler: function errorHandler() {
       return _gulpNotify2['default'].onError({
-        title: this.name,
+        title: this.conf.name,
         message: '<%= error.message %>'
       });
     },

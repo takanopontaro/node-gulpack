@@ -25,9 +25,10 @@ export default {
   methods: {
 
     _: _,
+    util: util,
 
-    configure(defaults, conf) {
-      return _.merge({}, defaults, conf);
+    clone() {
+      return _.merge({}, ...arguments);
     },
 
     optionify(options) {
@@ -42,7 +43,7 @@ export default {
 
     hrtimef(elapsed) {
       return [
-        util.colors.green(`[${this.name}]`),
+        util.colors.green(`[${this.conf.name}]`),
         'after',
         util.colors.magenta(elapsed),
       ];
@@ -50,7 +51,7 @@ export default {
 
     errorHandler() {
       return notify.onError({
-        title: this.name,
+        title: this.conf.name,
         message: '<%= error.message %>',
       });
     },
