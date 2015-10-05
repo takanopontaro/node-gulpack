@@ -26,7 +26,7 @@
     "vinyl-paths": "^2.0.0"
   },
   "files": [
-    "./dist/main.js"
+    "dist/main.js"
   ],
   "homepage": "https://github.com/takanopontaro/node-gulpack/",
   "keywords": [
@@ -34,7 +34,7 @@
     "plugin"
   ],
   "license": "MIT",
-  "main": "./dist/main.js",
+  "main": "dist/main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/takanopontaro/node-gulpack.git"
@@ -44,7 +44,6 @@
     "fixpack": "fixpack",
     "gulp": "NODE_ENV=development gulp",
     "ncu": "ncu",
-    "start": "NODE_ENV=development gulp",
-    "test": "gulp --cwd ./test --gulpfile ./test/gulpfile.babel.js"
+    "start": "NODE_ENV=development gulp"
   }
 }

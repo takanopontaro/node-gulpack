@@ -84,7 +84,7 @@ exports['default'] = {
     },
 
     plumber: function plumber() {
-      var conf = arguments.length <= 0 || arguments[0] === undefined ? { errorHandler: errorHandler() } : arguments[0];
+      var conf = arguments.length <= 0 || arguments[0] === undefined ? { errorHandler: this.errorHandler() } : arguments[0];
 
       return (0, _gulpPlumber2['default'])(conf);
     },
@@ -98,7 +98,9 @@ exports['default'] = {
       _gulpUtil2['default'].log.apply(_gulpUtil2['default'], _toConsumableArray(this.hrtimef(elapsed)));
     },
 
-    sourcemaps: function sourcemaps(enabled, method, options) {
+    sourcemaps: function sourcemaps(enabled, method) {
+      var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
       return (0, _gulpIf2['default'])(enabled, _gulpSourcemaps2['default'][method](options));
     },
 

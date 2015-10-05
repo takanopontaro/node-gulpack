@@ -55,7 +55,7 @@ export default {
       });
     },
 
-    plumber(conf = {errorHandler: errorHandler()}) {
+    plumber(conf = {errorHandler: this.errorHandler()}) {
       return plumber(conf);
     },
 
@@ -68,7 +68,7 @@ export default {
       util.log(...this.hrtimef(elapsed));
     },
 
-    sourcemaps(enabled, method, options) {
+    sourcemaps(enabled, method, options = {}) {
       return gulpif(enabled, sourcemaps[method](options));
     },
 
