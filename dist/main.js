@@ -6,51 +6,109 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _fs = require('fs');
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
 
-var _fs2 = _interopRequireDefault(_fs);
+var _lodash = require('lodash');
 
-var dir = __dirname + '/tasks';
-var files = _fs2['default'].readdirSync(dir);
-var pack = {};
+var _lodash2 = _interopRequireDefault(_lodash);
 
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
+var _gulpPlumber = require('gulp-plumber');
 
-try {
-  var _loop = function () {
-    var file = _step.value;
+var _gulpPlumber2 = _interopRequireDefault(_gulpPlumber);
 
-    if (/^_/.test(file)) return 'continue';
-    var name = file.replace(/\.js$/, '');
-    pack[name] = function (conf) {
-      var Task = require(dir + '/' + file)();
-      Task.defaultTaskName = name;
-      pack[name] = Task.register.bind(Task);
-      return Task.register(conf);
-    };
-  };
+var _gulpNotify = require('gulp-notify');
 
-  for (var _iterator = files[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-    var _ret = _loop();
+var _gulpNotify2 = _interopRequireDefault(_gulpNotify);
 
-    if (_ret === 'continue') continue;
-  }
-} catch (err) {
-  _didIteratorError = true;
-  _iteratorError = err;
-} finally {
-  try {
-    if (!_iteratorNormalCompletion && _iterator['return']) {
-      _iterator['return']();
+var _prettyHrtime = require('pretty-hrtime');
+
+var _prettyHrtime2 = _interopRequireDefault(_prettyHrtime);
+
+var _gulpUtil = require('gulp-util');
+
+var _gulpUtil2 = _interopRequireDefault(_gulpUtil);
+
+var _gulpIf = require('gulp-if');
+
+var _gulpIf2 = _interopRequireDefault(_gulpIf);
+
+var _gulpSourcemaps = require('gulp-sourcemaps');
+
+var _gulpSourcemaps2 = _interopRequireDefault(_gulpSourcemaps);
+
+var _gulpUglify = require('gulp-uglify');
+
+var _gulpUglify2 = _interopRequireDefault(_gulpUglify);
+
+exports['default'] = {
+
+  plugins: {},
+
+  load: function load(plugin, conf) {
+    var ps = this.plugins;
+    var p = ps[plugin] = ps[plugin] || require('gulpack-' + plugin);
+    return new p(conf);
+  },
+
+  mixin: function mixin(target) {
+    _lodash2['default'].merge(target, this.methods);
+  },
+
+  methods: {
+
+    _: _lodash2['default'],
+
+    configure: function configure(defaults, conf) {
+      return _lodash2['default'].merge({}, defaults, conf);
+    },
+
+    optionify: function optionify(options) {
+      switch (true) {
+        case _lodash2['default'].isObject(options):
+          return options;
+        case _lodash2['default'].isBoolean(options):
+          return {};
+      }
+      return {};
+    },
+
+    hrtimef: function hrtimef(elapsed) {
+      return [_gulpUtil2['default'].colors.green('[' + this.name + ']'), 'after', _gulpUtil2['default'].colors.magenta(elapsed)];
+    },
+
+    errorHandler: function errorHandler() {
+      return _gulpNotify2['default'].onError({
+        title: this.name,
+        message: '<%= error.message %>'
+      });
+    },
+
+    plumber: function plumber() {
+      var conf = arguments.length <= 0 || arguments[0] === undefined ? { errorHandler: errorHandler() } : arguments[0];
+
+      return (0, _gulpPlumber2['default'])(conf);
+    },
+
+    start: function start() {
+      this.__hrtime = process.hrtime();
+    },
+
+    stop: function stop() {
+      var elapsed = (0, _prettyHrtime2['default'])(process.hrtime(this.__hrtime));
+      _gulpUtil2['default'].log.apply(_gulpUtil2['default'], _toConsumableArray(this.hrtimef(elapsed)));
+    },
+
+    sourcemaps: function sourcemaps(enabled, method, options) {
+      return (0, _gulpIf2['default'])(enabled, _gulpSourcemaps2['default'][method](options));
+    },
+
+    uglify: function uglify(enabled) {
+      var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+      return (0, _gulpIf2['default'])(enabled, (0, _gulpUglify2['default'])(options));
     }
-  } finally {
-    if (_didIteratorError) {
-      throw _iteratorError;
-    }
-  }
-}
 
-exports['default'] = pack;
+  }
+
+};
 module.exports = exports['default'];
