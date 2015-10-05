@@ -44,6 +44,7 @@
     "fixpack": "fixpack",
     "gulp": "NODE_ENV=development gulp",
     "ncu": "ncu",
-    "start": "NODE_ENV=development gulp"
+    "start": "NODE_ENV=development gulp",
+    "test": "gulp --cwd ./test --gulpfile ./test/gulpfile.babel.js"
   }
 }
