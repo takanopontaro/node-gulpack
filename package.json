@@ -19,7 +19,7 @@
   "files": [
     "dist/main.js"
   ],
-  "homepage": "https://github.com/takanopontaro/node-gulpack/",
+  "homepage": "https://github.com/takanopontaro/node-gulpack",
   "keywords": [
     "gulp",
     "gulpack",
