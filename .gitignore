@@ -115,5 +115,4 @@ node_modules
 .lock-wscript
 
 
-dist/*
-!dist/.gitkeep
+dist

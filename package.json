@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^1.1.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-newer": "^1.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "lerna": "^1.1.2",
+    "through2": "^2.0.1"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "updated": "lerna updated",
+    "publish": "lerna publish",
+    "build": "NODE_ENV=development gulp",
+    "start": "NODE_ENV=development gulp watch"
+  }
+}

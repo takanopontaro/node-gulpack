@@ -1,0 +1,17 @@
+{
+  "name": "gulpack",
+  "description": "The wrapper of gulp plugins for easy-to-use.",
+  "version": "2.0.0",
+  "author": "takanopontaro",
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "dist/index.js"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack"
+  }
+}
