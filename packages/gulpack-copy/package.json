@@ -4,13 +4,9 @@
   "version": "2.0.0",
   "author": "takanopontaro",
   "dependencies": {
-    "gulp": "^3.9.1",
     "gulpack-base": "^2.0.0"
   },
-  "devDependencies": {
-    "gulpack": "^2.0.0",
-    "gulpack-copy": "^2.0.0"
-  },
+  "devDependencies": {},
   "files": [
     "dist/index.js"
   ],

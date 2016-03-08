@@ -1,6 +1,5 @@
 import 'colors';
 import _ from 'lodash';
-import gulp from 'gulp';
 import tap from 'gulp-tap';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
@@ -28,7 +27,8 @@ class Base {
   get pipes() {
     return [];
   }
-  constructor(conf) {
+  constructor(gulp, conf) {
+    this.gulp = gulp;
     this.conf = _.merge({}, this.defaults, conf);
     gulp.task(this.conf.name, this.getDeps(), this.getTask.bind(this));
   }
@@ -36,12 +36,12 @@ class Base {
     const { name, deps } = this.conf;
     if (deps.length === 0) return [];
     const taskName = `deps of ${name}`;
-    gulp.task(taskName, done => series(...deps, done));
+    this.gulp.task(taskName, done => series(...deps, done));
     return [taskName];
   }
   getTask() {
     const { glob, onEnd } = this.conf;
-    let stream = gulp.src(glob);
+    let stream = this.gulp.src(glob);
     for (const pipe of this.pipes) stream = stream.pipe(pipe);
     if (onEnd) stream.on('end', onEnd.bind(this));
     return stream;
@@ -97,6 +97,6 @@ class Base {
   }
 }
 
-_.mixin(Base, { _, if: gulpif });
+_.extend(Base.prototype, { _, if: gulpif });
 
 export default Base;

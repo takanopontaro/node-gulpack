@@ -1,10 +1,16 @@
 export default {
 
+  gulp: null,
   plugins: {},
+
+  init(gulp) {
+    this.gulp = gulp;
+  },
 
   task(name, conf) {
     const p = this.plugins;
-    return new (p[name] = p[name] || require(`gulpack-${name}`))(conf);
+    p[name] = p[name] || require(`gulpack-${name}`).default;
+    return new p[name](this.gulp, conf);
   },
 
 };
