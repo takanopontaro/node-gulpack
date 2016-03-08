@@ -1,0 +1,13 @@
+{
+  "extends": "airbnb/base",
+  "env": {
+    "browser": false,
+    "mocha": true,
+    "node": true
+  },
+  "rules": {
+    "strict": [2],
+    "valid-jsdoc": 2,
+    "func-names": 0
+  }
+}

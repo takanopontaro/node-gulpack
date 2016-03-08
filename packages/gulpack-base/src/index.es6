@@ -8,9 +8,8 @@ import hrtime from 'pretty-hrtime';
 import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
-import cached from 'gulp-cached';
-import changed from 'gulp-changed';
 import ignore from 'gulp-ignore';
+import newer from 'gulp-newer';
 import rename from 'gulp-rename';
 import iconv from 'iconv-lite';
 import series from 'run-sequence';
@@ -34,16 +33,16 @@ class Base {
     gulp.task(this.conf.name, this.getDeps(), this.getTask.bind(this));
   }
   getDeps() {
-    const {name, deps} = this.conf;
+    const { name, deps } = this.conf;
     if (deps.length === 0) return [];
     const taskName = `deps of ${name}`;
     gulp.task(taskName, done => series(...deps, done));
     return [taskName];
   }
   getTask() {
-    const {glob, onEnd} = this.conf;
+    const { glob, onEnd } = this.conf;
     let stream = gulp.src(glob);
-    for (let pipe of this.pipes) stream = stream.pipe(pipe);
+    for (const pipe of this.pipes) stream = stream.pipe(pipe);
     if (onEnd) stream.on('end', onEnd.bind(this));
     return stream;
   }
@@ -67,8 +66,9 @@ class Base {
         return opts;
       case _.isBoolean(opts):
         return {};
+      default:
+        return {};
     }
-    return {};
   }
   sourcemap(enabled, method, ...args) {
     return gulpif(enabled, sourcemaps[method](...args));
@@ -77,14 +77,14 @@ class Base {
     if (_.isPlainObject(enabled)) return gulpif(true, uglify(enabled));
     return gulpif(enabled, uglify());
   }
-  cached(enabled, name) {
-    return gulpif(enabled, cached(name));
-  }
   exclude(cond, opts) {
     return ignore.exclude(cond, opts);
   }
   include(cond, opts) {
     return ignore.include(cond, opts);
+  }
+  newer(arg) {
+    return newer(arg);
   }
   rename(arg) {
     return rename(arg);
@@ -97,6 +97,6 @@ class Base {
   }
 }
 
-_.mixin(Base, {_, if: gulpif, changed});
+_.mixin(Base, { _, if: gulpif });
 
 export default Base;

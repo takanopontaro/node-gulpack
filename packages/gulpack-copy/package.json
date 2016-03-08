@@ -1,15 +1,23 @@
 {
   "name": "gulpack-copy",
-  "description": "copy - gulpack plugin",
+  "description": "Copy as a gulpack plugin.",
   "version": "2.0.0",
   "author": "takanopontaro",
   "dependencies": {
-    "gulp": "^3.9.0",
-    "gulpack-base": "^1.0.0"
+    "gulp": "^3.9.1",
+    "gulpack-base": "^2.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulpack": "^2.0.0",
+    "gulpack-copy": "^2.0.0"
+  },
   "files": [
     "dist/index.js"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpack",
+    "copy"
   ],
   "license": "MIT",
   "main": "dist/index.js",

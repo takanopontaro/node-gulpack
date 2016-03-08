@@ -8,6 +8,10 @@
   "files": [
     "dist/index.js"
   ],
+  "keywords": [
+    "gulp",
+    "gulpack"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
