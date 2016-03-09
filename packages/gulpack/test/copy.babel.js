@@ -1,3 +1,4 @@
+import fs from 'fs';
 import gulp from 'gulp';
 import gulpack from 'gulpack';
 
@@ -9,8 +10,9 @@ gulpack.task('copy', {
   dest: './tmp',
 });
 
-gulp.task('teardown', () => {
-  // process.exit('OK');
+gulp.task('check', () => {
+  if (!fs.statSync('./tmp/package.json').isFile() ||
+  !fs.statSync('./tmp/index.es6').isFile()) process.exit(1);
 });
-
-gulp.task('default', ['copy', 'teardown']);
+console.log('==',helper.check,'==')
+gulp.task('default', ['copy'], helper.check);

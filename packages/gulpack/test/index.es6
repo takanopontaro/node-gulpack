@@ -10,6 +10,7 @@ const gulpBin = './node_modules/gulp/bin/gulp.js';
 function getArgs(plugin) {
   return [
     '--no-color', '--silent',
+    '--require', './test/helper.es6',
     '--gulpfile', `./test/${plugin}.babel.js`,
     '--cwd', process.cwd(),
   ];
@@ -22,8 +23,12 @@ function _describe(plugin, cb) {
   fn(`[${plugin}]`, cb);
 }
 
+function clearTmp() {
+  return execSync('rm -rf ./tmp/*');
+}
+
 _describe('copy', () => {
-  before(() => execSync('rm -rf ./tmp/*'));
+  before(clearTmp);
   it('should be copied specified files', () => {
     const res = spawnSync(gulpBin, getArgs('copy'));
     expect(res.status).to.equal(0);
@@ -31,7 +36,7 @@ _describe('copy', () => {
 });
 
 _describe('babel', () => {
-  before(() => execSync('rm -rf ./tmp/*'));
+  before(clearTmp);
   it('should be compiled specified files', () => {
     const res = spawnSync(gulpBin, getArgs('babel'));
     expect(res.status).to.equal(0);

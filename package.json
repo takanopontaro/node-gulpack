@@ -25,5 +25,8 @@
     "test": "mocha --compilers js:babel-register packages/gulpack/test/index.es6",
     "build": "NODE_ENV=production gulp",
     "start": "NODE_ENV=development gulp watch"
+  },
+  "babel": {
+    "presets": ["es2015"]
   }
 }

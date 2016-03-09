@@ -12,8 +12,8 @@ gulpack.task('babel', {
   uglify: false,
 });
 
-gulp.task('teardown', () => {
+gulp.task('check', () => {
   // process.exit('OK');
 });
 
-gulp.task('default', ['babel', 'teardown']);
+gulp.task('default', ['babel', 'check']);
