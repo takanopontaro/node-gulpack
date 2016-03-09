@@ -12,6 +12,7 @@ import newer from 'gulp-newer';
 import rename from 'gulp-rename';
 import iconv from 'iconv-lite';
 import series from 'run-sequence';
+import through2 from 'through2';
 
 
 class Base {
@@ -70,12 +71,30 @@ class Base {
         return {};
     }
   }
-  sourcemap(enabled, method, ...args) {
-    return gulpif(enabled, sourcemaps[method](...args));
+  sourcemap(arg, method) {
+    if (!arg) return through2.obj();
+    const confs = {
+      init: {},
+      write: {
+        dir: '.',
+        opts: {},
+      },
+    };
+    if (_.isPlainObject(arg)) _.merge(confs, arg);
+    const conf = confs[method];
+    const args = [];
+    if (method === 'init') {
+      args.push(conf);
+    } else {
+      if (conf.dir) args.push(conf.dir);
+      args.push(conf.opts);
+    }
+    return sourcemaps[method](...args);
   }
-  uglify(enabled) {
-    if (_.isPlainObject(enabled)) return gulpif(true, uglify(enabled));
-    return gulpif(enabled, uglify());
+  uglify(arg) {
+    if (!arg) return through2.obj();
+    if (arg === true) return uglify();
+    return uglify(arg);
   }
   exclude(cond, opts) {
     return ignore.exclude(cond, opts);
