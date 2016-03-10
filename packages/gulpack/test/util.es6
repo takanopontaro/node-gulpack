@@ -1,4 +1,5 @@
 import fs from 'fs';
+import jschardet from 'jschardet';
 
 
 export default {
@@ -23,5 +24,13 @@ export default {
   },
   log(str) {
     process.stdout.write(`${str}\n`);
+  },
+  encoding(path) {
+    try {
+      const buf = fs.readFileSync(path);
+      return jschardet.detect(buf).encoding;
+    } catch (e) {
+      return null;
+    }
   },
 };

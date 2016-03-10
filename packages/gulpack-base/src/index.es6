@@ -6,8 +6,12 @@ import notify from 'gulp-notify';
 import hrtime from 'pretty-hrtime';
 import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
-import uglify from 'gulp-uglify';
+import minifyHtml from 'gulp-htmlmin';
+import minifyCss from 'gulp-clean-css';
+import minifyJs from 'gulp-uglify';
 import ignore from 'gulp-ignore';
+import cache from 'gulp-cached';
+import changed from 'gulp-changed';
 import newer from 'gulp-newer';
 import rename from 'gulp-rename';
 import iconv from 'iconv-lite';
@@ -61,12 +65,12 @@ class Base {
       }),
     });
   }
-  optify(opts) {
+  optify(opts, defaults = {}) {
     switch (true) {
       case _.isPlainObject(opts):
         return opts;
       case _.isBoolean(opts):
-        return {};
+        return opts ? defaults : {};
       default:
         return {};
     }
@@ -91,22 +95,42 @@ class Base {
     }
     return sourcemaps[method](...args);
   }
-  uglify(arg) {
+  minifyHtml(arg) {
     if (!arg) return through2.obj();
-    if (arg === true) return uglify();
-    return uglify(arg);
+    if (arg === true) {
+      return minifyHtml({
+        removeComments: true,
+        collapseWhitespace: true,
+        minifyJS: true,
+        minifyCSS: true,
+      });
+    }
+    return minifyHtml(arg);
+  }
+  minifyCss(arg) {
+    if (!arg) return through2.obj();
+    if (arg === true) return minifyCss();
+    return minifyCss(arg);
+  }
+  minifyJs(arg) {
+    if (!arg) return through2.obj();
+    if (arg === true) return minifyJs();
+    return minifyJs(arg);
+  }
+  cache(arg, name) {
+    if (!arg) return through2.obj();
+    if (arg === true) return cache(name);
+    return cache(name, arg);
+  }
+  changed(dest, arg) {
+    if (!arg) return changed(dest);
+    return changed(dest, arg);
   }
   exclude(cond, opts) {
     return ignore.exclude(cond, opts);
   }
   include(cond, opts) {
     return ignore.include(cond, opts);
-  }
-  newer(arg) {
-    return newer(arg);
-  }
-  rename(arg) {
-    return rename(arg);
   }
   encode(arg) {
     return tap(file => {
@@ -116,6 +140,6 @@ class Base {
   }
 }
 
-_.extend(Base.prototype, { _, if: gulpif });
+_.extend(Base.prototype, { _, if: gulpif, newer, rename });
 
 export default Base;

@@ -11,7 +11,11 @@
     "gulp": "^3.9.1",
     "gulpack": "^2.0.0",
     "gulpack-babel": "^2.0.0",
-    "gulpack-copy": "^2.0.0"
+    "gulpack-copy": "^2.0.0",
+    "gulpack-jade": "^2.0.0",
+    "gulpack-sass": "^2.0.0",
+    "gulpack-webpack": "^2.0.0",
+    "jschardet": "^1.4.1"
   },
   "files": [
     "dist/index.js"

@@ -1,0 +1,25 @@
+{
+  "name": "gulpack-webpack",
+  "description": "Webpack as a gulpack plugin.",
+  "version": "2.0.0",
+  "author": "takanopontaro",
+  "dependencies": {
+    "gulpack-base": "^2.0.0",
+    "webpack-stream": "^3.1.0"
+  },
+  "devDependencies": {},
+  "files": [
+    "dist/index.js"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpack",
+    "webpack"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-webpack"
+  }
+}

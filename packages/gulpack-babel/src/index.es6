@@ -8,16 +8,16 @@ export default class extends Base {
       name: 'babel',
       opts: {},
       sourcemap: false,
-      uglify: false,
+      minify: false,
     });
   }
   get pipes() {
-    const { dest, opts, sourcemap, uglify } = this.conf;
+    const { dest, opts, sourcemap, minify } = this.conf;
     return [
       this.plumber(),
       this.sourcemap(sourcemap, 'init'),
       babel(opts),
-      this.uglify(uglify),
+      this.minifyJs(minify),
       this.sourcemap(sourcemap, 'write'),
       this.gulp.dest(dest),
     ];

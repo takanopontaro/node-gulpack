@@ -1,13 +1,13 @@
 import path from 'path';
 import { spawnSync } from 'child_process';
-import del from 'del';
 import { expect } from 'chai';
+import del from 'del';
 import util from './util.es6';
 
 
 process.chdir(path.normalize(`${__dirname}/../`));
 
-const target = (md => md ? md[1] : null)(process.argv.pop().match(/--plugin=(.+)/));
+const target = (md => md ? md[1] : null)(process.argv.pop().match(/-p=(.+)/));
 
 function _describe(plugin, cb) {
   const fn = (!target || target === plugin) ? describe : describe.skip;
@@ -15,6 +15,7 @@ function _describe(plugin, cb) {
 }
 
 function run(plugin) {
+  if (target && target !== plugin) return [];
   const args = [
     '--no-color', '--silent',
     '--gulpfile', `./test/${plugin}/gulpfile.babel.js`,
@@ -32,18 +33,54 @@ describe('gulpack', function () {
 
   _describe('copy', () => {
     const res = run('copy');
-    it('Files are copied.', () => {
+    it('copied', () => {
       expect(res[0]).to.equal(1);
     });
   });
 
   _describe('babel', () => {
     const res = run('babel');
-    it('A file are compiled.', () => {
+    it('compiled', () => {
       expect(res[0]).to.equal(1);
     });
-    it('A file are compiled with options.', () => {
+    it('compiled with options', () => {
       expect(res[1]).to.equal(1);
+    });
+    it('compiled with config', () => {
+      expect(res[2]).to.equal(1);
+    });
+  });
+
+  _describe('jade', () => {
+    const res = run('jade');
+    it('compiled', () => {
+      expect(res[0]).to.equal(1);
+    });
+    it('compiled with options', () => {
+      expect(res[1]).to.equal(1);
+    });
+    it('compiled with config', () => {
+      expect(res[2]).to.equal(1);
+    });
+  });
+
+  _describe('sass', () => {
+    const res = run('sass');
+    it('compiled', () => {
+      expect(res[0]).to.equal(1);
+    });
+    it('compiled with options', () => {
+      expect(res[1]).to.equal(1);
+    });
+    it('compiled with config', () => {
+      expect(res[2]).to.equal(1);
+    });
+  });
+
+  _describe('webpack', () => {
+    const res = run('webpack');
+    it('compiled', () => {
+      expect(res[0]).to.equal(1);
     });
   });
 });

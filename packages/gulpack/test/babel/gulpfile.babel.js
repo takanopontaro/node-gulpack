@@ -17,7 +17,18 @@ gulpack.task('babel', {
   opts: { compact: true },
 });
 
-gulp.task('default', ['babel', 'babel-opts'], () => {
-  util.log(util.exists('./tmp/babel/1/hoge.js') ? 1 : 0);
-  util.log(util.test('./tmp/babel/2/hoge.js', /\n/) ? 0 : 1);
+gulpack.task('babel', {
+  name: 'babel-misc',
+  glob: './test/babel/hoge.es6',
+  dest: './tmp/babel/3',
+  minify: true,
+});
+
+gulp.task('default', ['babel', 'babel-opts', 'babel-misc'], () => {
+  const test1 = util.exists('./tmp/babel/1/hoge.js');
+  const test2 = util.exists('./tmp/babel/2/hoge.js') && !util.test('./tmp/babel/2/hoge.js', /\n/);
+  const test3 = util.exists('./tmp/babel/3/hoge.js') && !util.test('./tmp/babel/3/hoge.js', /\n/);
+  util.log(+test1);
+  util.log(+test2);
+  util.log(+test3);
 });
