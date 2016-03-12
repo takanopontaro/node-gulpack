@@ -11,6 +11,7 @@ var gulp    = require('gulp');
 var path    = require('path');
 
 var scripts = './packages/*/src/**/*.es6';
+var copies = ['./packages/*/src/**/*', '!./packages/*/src/**/*.es6'];
 var dest = 'packages';
 
 var srcEx, libFragment;
@@ -24,7 +25,17 @@ else {
   libFragment = '$1/dist/';
 }
 
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'copy']);
+
+gulp.task('copy', function() {
+  return gulp.src(copies)
+    .pipe(through.obj(function(file, enc, callback) {
+      file._path = file.path;
+      file.path = file.path.replace(srcEx, libFragment);
+      callback(null, file);
+    }))
+    .pipe(gulp.dest(dest));
+});
 
 gulp.task('build', function() {
   return gulp.src(scripts)
@@ -47,8 +58,11 @@ gulp.task('build', function() {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('watch', ['build'], function(callback) {
+gulp.task('watch', ['build', 'copy'], function(callback) {
   watch(scripts, function() {
     gulp.start('build');
+  });
+  watch(copies, function() {
+    gulp.start('copy');
   });
 });

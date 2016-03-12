@@ -1,0 +1,28 @@
+{
+  "name": "gulpack-csssprite",
+  "description": "CSS sprite as a gulpack plugin.",
+  "version": "2.0.0",
+  "author": "takanopontaro",
+  "dependencies": {
+    "gulp.spritesmith": "^6.2.0",
+    "gulpack-base": "^2.0.0",
+    "merge-stream": "^1.0.0"
+  },
+  "devDependencies": {},
+  "files": [
+    "dist/index.js",
+    "dist/scss@2x.hbs",
+    "dist/scss.hbs"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpack",
+    "CSS sprite"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-csssprite"
+  }
+}

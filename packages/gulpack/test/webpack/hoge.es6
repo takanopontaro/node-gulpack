@@ -1,1 +1,0 @@
-require('./fuga.es6');

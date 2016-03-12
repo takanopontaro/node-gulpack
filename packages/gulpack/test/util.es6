@@ -25,12 +25,21 @@ export default {
   log(str) {
     process.stdout.write(`${str}\n`);
   },
-  encoding(path) {
+  smaller(path1, path2) {
+    try {
+      const stat1 = fs.statSync(path1);
+      const stat2 = fs.statSync(path2);
+      return stat1.size < stat2.size;
+    } catch (e) {
+      throw new Error(e);
+    }
+  },
+  encoding(path, enc) {
     try {
       const buf = fs.readFileSync(path);
-      return jschardet.detect(buf).encoding;
+      return jschardet.detect(buf).encoding === enc;
     } catch (e) {
-      return null;
+      return false;
     }
   },
 };

@@ -115,7 +115,5 @@ node_modules
 .lock-wscript
 
 
-tmp/*
-!tmp/.gitkeep
-
+tmp
 dist

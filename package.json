@@ -2,9 +2,11 @@
   "private": true,
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.7.0",
+    "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.6.0",
-    "chai": "^3.5.0",
     "chalk": "^1.1.1",
+    "del": "^2.2.0",
     "eslint": "^2.3.0",
     "eslint-config-airbnb": "^6.1.0",
     "gulp": "^3.9.1",
@@ -13,20 +15,22 @@
     "gulp-plumber": "^1.1.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
+    "imagemin-pngquant": "^4.2.2",
+    "jschardet": "^1.4.1",
     "lerna": "^1.1.2",
+    "lodash": "^4.6.1",
     "mocha": "^2.4.5",
-    "through2": "^2.0.1"
+    "run-sequence": "^1.1.5",
+    "through2": "^2.0.1",
+    "webpack-stream": "^3.1.0"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "updated": "lerna updated",
     "publish": "lerna publish",
     "lint": "eslint packages/*/src/*.es6",
-    "test": "mocha --compilers js:babel-register packages/gulpack/test/index.es6",
+    "test": "mocha --compilers js:babel-register packages/gulpack/test/mocha.es6",
     "build": "NODE_ENV=production gulp",
     "start": "NODE_ENV=development gulp watch"
-  },
-  "babel": {
-    "presets": ["es2015"]
   }
 }

@@ -1,0 +1,16 @@
+{{#spritesheet}}
+  i, .i {
+    display: inline-block;
+    background-image: url({{image}});
+    background-repeat: no-repeat;
+    background-size: {{half width}}px {{half height}}px;
+  }
+{{/spritesheet}}
+
+{{#sprites}}
+  .i-{{name}} {
+    width: {{half width}}px;
+    height: {{half height}}px;
+    background-position: {{half offset_x}}px {{half offset_y}}px;
+  }
+{{/sprites}}

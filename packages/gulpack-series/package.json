@@ -1,0 +1,25 @@
+{
+  "name": "gulpack-series",
+  "description": "Run-sequence as a gulpack plugin.",
+  "version": "2.0.0",
+  "author": "takanopontaro",
+  "dependencies": {
+    "gulpack-base": "^2.0.0",
+    "run-sequence": "^1.1.5"
+  },
+  "devDependencies": {},
+  "files": [
+    "dist/index.js"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpack",
+    "run-sequence"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-series"
+  }
+}

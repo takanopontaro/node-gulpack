@@ -1,5 +1,6 @@
 import 'colors';
 import _ from 'lodash';
+import util from 'gulp-util';
 import tap from 'gulp-tap';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
@@ -15,9 +16,11 @@ import changed from 'gulp-changed';
 import newer from 'gulp-newer';
 import rename from 'gulp-rename';
 import iconv from 'iconv-lite';
-import series from 'run-sequence';
+import runSequence from 'run-sequence';
 import through2 from 'through2';
 
+
+const _data = {};
 
 class Base {
   get defaults() {
@@ -34,14 +37,24 @@ class Base {
   }
   constructor(gulp, conf) {
     this.gulp = gulp;
-    this.conf = _.merge({}, this.defaults, conf);
+    this.conf = this.getConf(conf);
     gulp.task(this.conf.name, this.getDeps(), this.getTask.bind(this));
+  }
+  getData(key) {
+    if (key === undefined) return _data;
+    return _data[key];
+  }
+  setData(key, val) {
+    return (_data[key] = val);
+  }
+  getConf(conf) {
+    return _.merge({}, this.defaults, conf);
   }
   getDeps() {
     const { name, deps } = this.conf;
     if (deps.length === 0) return [];
     const taskName = `deps of ${name}`;
-    this.gulp.task(taskName, done => series(...deps, done));
+    this.gulp.task(taskName, done => runSequence(...deps, done));
     return [taskName];
   }
   getTask() {
@@ -140,6 +153,6 @@ class Base {
   }
 }
 
-_.extend(Base.prototype, { _, if: gulpif, newer, rename });
+_.extend(Base.prototype, { util, _, if: gulpif, newer, rename });
 
 export default Base;

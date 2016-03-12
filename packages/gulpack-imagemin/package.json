@@ -1,0 +1,25 @@
+{
+  "name": "gulpack-imagemin",
+  "description": "Imagemin as a gulpack plugin.",
+  "version": "2.0.0",
+  "author": "takanopontaro",
+  "dependencies": {
+    "gulp-imagemin": "^2.4.0",
+    "gulpack-base": "^2.0.0"
+  },
+  "devDependencies": {},
+  "files": [
+    "dist/index.js"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpack",
+    "imagemin"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-imagemin"
+  }
+}
