@@ -1,0 +1,27 @@
+{
+  "name": "gulpack-iconfont",
+  "description": "Iconfont as a gulpack plugin.",
+  "version": "2.0.0",
+  "author": "takanopontaro",
+  "dependencies": {
+    "gulp-consolidate": "^0.2.0",
+    "gulp-iconfont": "^6.0.0",
+    "gulpack-base": "^2.0.0"
+  },
+  "devDependencies": {},
+  "files": [
+    "dist/index.js",
+    "dist/scss.lodash"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpack",
+    "iconfont"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-iconfont"
+  }
+}

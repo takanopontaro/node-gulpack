@@ -1,10 +1,10 @@
 {
-  "name": "gulpack-jade",
-  "description": "Jade as a gulpack plugin.",
+  "name": "gulpack-svgsprite",
+  "description": "SVG sprite as a gulpack plugin.",
   "version": "2.0.0",
   "author": "takanopontaro",
   "dependencies": {
-    "gulp-jade": "^1.1.0",
+    "gulp-svg-sprite": "^1.2.19",
     "gulpack-base": "^2.0.0"
   },
   "devDependencies": {},
@@ -14,12 +14,12 @@
   "keywords": [
     "gulp",
     "gulpack",
-    "jade"
+    "SVG sprite"
   ],
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-jade"
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-svgsprite"
   }
 }

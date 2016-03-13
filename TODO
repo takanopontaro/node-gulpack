@@ -1,3 +1,5 @@
 batch
 sourcemap
 uglify
+gulp-data
+cache

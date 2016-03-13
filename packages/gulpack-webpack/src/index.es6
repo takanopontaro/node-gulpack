@@ -22,25 +22,24 @@ export default class extends Base {
   get pipes() {
     const { name, dest, cache, minify, alt } = this.conf;
     const opts = this._.cloneDeep(this.conf.opts);
-    const sourcemap = this.getSourcemap(opts);
-    const cb = this.getCb();
-    this.mergeBabel(opts);
-    this.mergeCommons(opts);
-    this.mergeBuiltins(opts);
+    const sourcemap = this.getSourcemap();
+    if (sourcemap) opts.devtool = 'source-map';
+    this._.merge(opts, this.getBabel());
+    this._.merge(opts, this.getCommons());
+    this._.merge(opts, this.getBuiltins());
     return [
       this.cache(cache, name),
       this.plumber(),
-      webpack(opts, alt, cb),
+      webpack(opts, alt, this.getCb()),
       this.sourcemap(sourcemap, 'init'),
       this.minifyJs(minify),
       this.sourcemap(sourcemap, 'write'),
       this.gulp.dest(dest),
     ];
   }
-  getSourcemap(opts) {
+  getSourcemap() {
     let map = this._.cloneDeep(this.conf.sourcemap);
     if (map) {
-      opts.devtool = 'source-map';
       if (map === true) map = { loadMaps: true };
       else map.loadMaps = true;
     }
@@ -52,36 +51,36 @@ export default class extends Base {
     if (cb) return cb;
     return silent ? () => {} : null;
   }
-  mergeBabel(opts) {
+  getBabel() {
     const { babel } = this.conf;
-    if (babel) {
-      const babelOpts = this.optify(babel, {
-        test: /\.(?:js|es6)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015'],
-          cacheDirectory: true,
-        },
-      });
-      this._.merge(opts, { module: { loaders: [babelOpts] } });
-    }
+    if (!babel) return {};
+    const opts = this.optify(babel, {
+      test: /\.(?:js|es6)$/,
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel',
+      query: {
+        presets: ['es2015'],
+        cacheDirectory: true,
+      },
+    });
+    return { module: { loaders: [opts] } };
   }
-  mergeCommons(opts) {
+  getCommons() {
     const { commons } = this.conf;
-    if (commons) {
-      const commonsOpts = this.optify(commons, {
-        filename: 'common.js',
-        name: 'common',
-      });
-      this._.merge(opts, { plugins: [new CommonsChunk(commonsOpts)] });
-    }
+    if (!commons) return {};
+    const opts = this.optify(commons, {
+      filename: 'common.js',
+      name: 'common',
+    });
+    return { plugins: [new CommonsChunk(opts)] };
   }
-  mergeBuiltins(opts) {
+  getBuiltins() {
+    const res = {};
     this._.forEach(this.conf.builtin, (val, key) => {
       const path = key.replace(/\./g, '/');
       const Plugin = require(`webpack/lib/${path}`);
-      this._.merge(opts, { plugins: [new Plugin(val)] });
+      this._.merge(res, { plugins: [new Plugin(val)] });
     });
+    return res;
   }
 }

@@ -30,6 +30,7 @@ class Base {
       onEnd: null,
       glob: '',
       dest: '',
+      srcOpts: {},
     };
   }
   get pipes() {
@@ -58,8 +59,8 @@ class Base {
     return [taskName];
   }
   getTask() {
-    const { glob, onEnd } = this.conf;
-    let stream = this.gulp.src(glob);
+    const { glob, onEnd, srcOpts } = this.conf;
+    let stream = this.gulp.src(glob, srcOpts);
     for (const pipe of this.pipes) stream = stream.pipe(pipe);
     if (onEnd) stream.on('end', onEnd.bind(this));
     return stream;
@@ -92,10 +93,7 @@ class Base {
     if (!arg) return through2.obj();
     const confs = {
       init: {},
-      write: {
-        dir: '.',
-        opts: {},
-      },
+      write: { dir: '.', opts: {} },
     };
     if (_.isPlainObject(arg)) _.merge(confs, arg);
     const conf = confs[method];
@@ -148,11 +146,12 @@ class Base {
   encode(arg) {
     return tap(file => {
       const enc = _.isFunction(arg) ? arg(file) : arg;
+      // eslint-disable-next-line no-param-reassign
       file.contents = iconv.encode(file.contents.toString(), enc);
     });
   }
 }
 
-_.extend(Base.prototype, { util, _, if: gulpif, newer, rename });
+_.extend(Base.prototype, { util, _, if: gulpif, newer, rename, through2 });
 
 export default Base;

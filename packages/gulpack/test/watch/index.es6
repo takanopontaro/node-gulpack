@@ -1,4 +1,4 @@
-import fs from 'fs';
+import touch from 'touch';
 import runSequence from 'run-sequence';
 import gulp from 'gulp';
 import gulpack from 'gulpack';
@@ -22,10 +22,11 @@ gulp.task('watch-b', done => {
     global._res = res;
     done();
   }
-  timer1 = setInterval(() => util.exists('./tmp/watch/a.html') && finish(true), 10);
+  timer1 = setInterval(() => {
+    touch(glob, { force: true });
+    if (util.exists('./tmp/watch/a.html')) finish(true);
+  }, 100);
   timer2 = setTimeout(() => finish(false), 30000);
-  const buf = fs.readFileSync(glob);
-  fs.writeFileSync(glob, buf);
 });
 
 gulpack.task('watch', {

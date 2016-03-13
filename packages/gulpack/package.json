@@ -14,7 +14,12 @@
     "gulpack-imagemin": "^2.0.0",
     "gulpack-csssprite": "^2.0.0",
     "gulpack-series": "^2.0.0",
-    "gulpack-watch": "^2.0.0"
+    "gulpack-watch": "^2.0.0",
+    "gulpack-concat": "^2.0.0",
+    "gulpack-del": "^2.0.0",
+    "gulpack-iconfont": "^2.0.0",
+    "gulpack-sassimporter": "^2.0.0",
+    "gulpack-svgsprite": "^2.0.0"
   },
   "files": [
     "dist/index.js"

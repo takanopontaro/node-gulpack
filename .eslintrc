@@ -6,7 +6,6 @@
     "node": true
   },
   "rules": {
-    "no-param-reassign": [2, { "props": false }],
     "strict": [2],
     "valid-jsdoc": 2,
     "func-names": 0

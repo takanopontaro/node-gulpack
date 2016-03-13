@@ -21,9 +21,7 @@ export default class extends Base {
       jade(opts),
       this.minifyHtml(minify),
       this.encode(encoding),
-      this.rename(path => {
-        path.extname = extension;
-      }),
+      this.rename({ extname: extension }),
       this.gulp.dest(dest),
     ];
   }
