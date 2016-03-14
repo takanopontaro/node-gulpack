@@ -1,5 +1,4 @@
-batch
 sourcemap
 uglify
-gulp-data
 cache
+transform: translate(9px,-54px);

@@ -25,6 +25,7 @@ gulpack.task('jade', {
   extension: '.htm',
   encoding: 'sjis',
   minify: true,
+  datafile: './test/jade/b.json',
 });
 
 gulp.task('jade:test1', ['jade1'], () => {
@@ -39,5 +40,6 @@ gulp.task('jade:test2', ['jade2'], () => {
 
 gulp.task('jade:test3', ['jade3'], () => {
   const path = './tmp/jade/3/a.htm';
-  global._res = util.exists(path) && !util.test(path, /\n/) && util.encoding(path, 'SHIFT_JIS');
+  global._res = util.exists(path) && !util.test(path, /\n/)
+    && util.test(path, /fuga/) && util.encoding(path, 'SHIFT_JIS');
 });

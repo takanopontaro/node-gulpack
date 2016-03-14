@@ -15,6 +15,7 @@ import cache from 'gulp-cached';
 import changed from 'gulp-changed';
 import newer from 'gulp-newer';
 import rename from 'gulp-rename';
+import data from 'gulp-data';
 import iconv from 'iconv-lite';
 import runSequence from 'run-sequence';
 import through2 from 'through2';
@@ -152,6 +153,6 @@ class Base {
   }
 }
 
-_.extend(Base.prototype, { util, _, if: gulpif, newer, rename, through2 });
+_.extend(Base.prototype, { util, _, if: gulpif, newer, rename, through2, data });
 
 export default Base;

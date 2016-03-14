@@ -1,17 +1,18 @@
 import fs from 'fs';
+import path from 'path';
 import { fork } from 'child_process';
 import del from 'del';
 
 
 const testRoot = './packages/gulpack';
-const tmpDir = `${testRoot}/tmp`;
+const tmpDir = path.join(testRoot, 'tmp');
 
 del.sync(tmpDir);
 fs.mkdirSync(tmpDir);
 
 const gulp = fork('./node_modules/gulp/bin/gulp.js', [
   '--no-color', '--silent',
-  '--gulpfile', `${testRoot}/test/gulpfile.babel.js`,
+  '--gulpfile', path.join(testRoot, 'test/gulpfile.babel.js'),
   '--cwd', testRoot,
 ]);
 
