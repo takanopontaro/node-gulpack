@@ -10,7 +10,7 @@ export default class extends Base {
       name: 'csssprite',
       opts: {
         imgName: 'sprite.png',
-        cssName: 'sprite.scss',
+        cssName: '_sprite.scss',
         cssTemplate: path.join(__dirname, 'scss@2x.hbs'),
         cssHandlebarsHelpers: { half(num) { return num / 2; } },
       },

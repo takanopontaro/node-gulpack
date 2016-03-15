@@ -7,7 +7,7 @@ export default class extends Base {
   get defaults() {
     return this._.merge({}, super.defaults, {
       name: 'jade',
-      opts: { pretty: true },
+      opts: { pretty: true, doctype: 'html' },
       extension: '.html',
       encoding: 'utf8',
       cache: true,
