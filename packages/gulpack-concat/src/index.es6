@@ -6,7 +6,7 @@ export default class extends Base {
   get defaults() {
     return this._.merge({}, super.defaults, {
       name: 'concat',
-      opts: { path: 'all.js' },
+      opts: { path: 'lib.js' },
       sourcemap: false,
       minify: false,
       minifyExt: {
