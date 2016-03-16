@@ -1,11 +1,11 @@
 {
   "name": "gulpack-babel",
   "description": "Babel as a gulpack plugin.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "takanopontaro",
   "dependencies": {
     "gulp-babel": "^6.1.2",
-    "gulpack-base": "^2.0.0"
+    "gulpack-base": "^2.0.1"
   },
   "devDependencies": {},
   "files": [

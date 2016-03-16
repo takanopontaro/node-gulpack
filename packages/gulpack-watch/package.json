@@ -1,12 +1,12 @@
 {
   "name": "gulpack-watch",
   "description": "Watch as a gulpack plugin.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "takanopontaro",
   "dependencies": {
     "gulp-batch": "^1.0.5",
     "gulp-watch": "^4.3.5",
-    "gulpack-base": "^2.0.0",
+    "gulpack-base": "^2.0.1",
     "run-sequence": "^1.1.5"
   },
   "devDependencies": {},

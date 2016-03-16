@@ -1,11 +1,11 @@
 {
   "name": "gulpack-svgsprite",
   "description": "SVG sprite as a gulpack plugin.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "takanopontaro",
   "dependencies": {
     "gulp-svg-sprite": "^1.2.19",
-    "gulpack-base": "^2.0.0"
+    "gulpack-base": "^2.0.1"
   },
   "devDependencies": {},
   "files": [
