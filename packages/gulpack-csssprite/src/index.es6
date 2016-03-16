@@ -14,16 +14,13 @@ export default class extends Base {
         cssTemplate: path.join(__dirname, 'scss@2x.hbs'),
         cssHandlebarsHelpers: { half(num) { return num / 2; } },
       },
-      cache: true,
       retina: true,
     });
   }
   get pipes() {
-    const { name, opts, cache } = this.conf;
     return [
-      this.cache(cache, name),
       this.plumber(),
-      spritesmith(opts),
+      spritesmith(this.conf.opts),
     ];
   }
   getConf(conf) {

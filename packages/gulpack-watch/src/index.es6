@@ -21,7 +21,7 @@ export default class extends Base {
   run({ conf: { name } }, vinyl) {
     const { event, relative } = vinyl;
     this.util.log(`[${event}]`.green, relative.yellow);
-    this.setData('watch', vinyl);
+    this.setData('watch', { [name]: vinyl });
     runSequence(name);
   }
 }

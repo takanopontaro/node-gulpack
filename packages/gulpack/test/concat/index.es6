@@ -29,7 +29,7 @@ gulpack.task('concat', {
 });
 
 gulp.task('concat:test1', ['concat1'], () => {
-  const path = './tmp/concat/1/all.js';
+  const path = './tmp/concat/1/lib.js';
   global._res = util.exists(path);
 });
 

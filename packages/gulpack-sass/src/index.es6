@@ -15,7 +15,10 @@ export default class extends Base {
     });
   }
   get pipes() {
-    const { name, dest, opts, cache, sourcemap, minify, autoprefix } = this.conf;
+    const { name, dest, opts, sourcemap, minify, autoprefix } = this.conf;
+    let { cache } = this.conf;
+    const data = this.getData('watch');
+    if (data && data[name].basename.startsWith('_')) cache = false;
     return [
       this.cache(cache, name),
       this.plumber(),

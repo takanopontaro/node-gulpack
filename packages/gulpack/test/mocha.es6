@@ -39,7 +39,7 @@ function _describe(plugin, tests) {
 }
 
 describe('gulpack', function () {
-  this.timeout(60000);
+  this.timeout(120000);
 
   after(() => gulp.kill());
 
