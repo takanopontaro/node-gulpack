@@ -1,16 +1,24 @@
 {{#spritesheet}}
-  i, .i {
+  @mixin i() {
     display: inline-block;
     background-image: url({{image}});
     background-repeat: no-repeat;
     background-size: {{px.width}} {{px.height}};
   }
+
+  %i, i, .i {
+    @include i();
+  }
 {{/spritesheet}}
 
 {{#sprites}}
-  .i-{{name}} {
+  @mixin i-{{name}}() {
     width: {{px.width}};
     height: {{px.height}};
     background-position: {{px.offset_x}} {{px.offset_y}};
+  }
+
+  %i-{{name}}, .i-{{name}} {
+    @include i-{{name}}();
   }
 {{/sprites}}

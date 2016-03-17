@@ -12,7 +12,7 @@ export default class extends Base {
       cache: true,
       css: {
         tmpl: path.join(__dirname, 'scss.lodash'),
-        path: './icon.scss',
+        path: './_icon.scss',
         data: { fontPath: './', prefix: 'i' },
       },
     });

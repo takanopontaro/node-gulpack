@@ -9,7 +9,7 @@ gulpack.task('iconfont', {
   name: 'iconfont1',
   glob,
   dest: './tmp/iconfont/1',
-  css: { path: './tmp/iconfont/1/icon.scss' },
+  css: { path: './tmp/iconfont/1/_icon.scss' },
 });
 
 gulpack.task('iconfont', {
@@ -22,19 +22,19 @@ gulpack.task('iconfont', {
   },
   css: {
     tmpl: './test/iconfont/c.lodash',
-    path: './tmp/iconfont/2/icon.scss',
+    path: './tmp/iconfont/2/_icon.scss',
     data: { prefix: 'fuga' },
   },
 });
 
 gulp.task('iconfont:test1', ['iconfont1'], () => {
   const path1 = './tmp/iconfont/1/icon.ttf';
-  const path2 = './tmp/iconfont/1/icon.scss';
+  const path2 = './tmp/iconfont/1/_icon.scss';
   global._res = util.exists(path1) && util.exists(path2);
 });
 
 gulp.task('iconfont:test2', ['iconfont2'], () => {
   const path1 = './tmp/iconfont/2/hoge.ttf';
-  const path2 = './tmp/iconfont/2/icon.scss';
+  const path2 = './tmp/iconfont/2/_icon.scss';
   global._res = util.exists(path1) && util.test(path2, /\\F500/) && util.test(path2, /!fuga!/);
 });

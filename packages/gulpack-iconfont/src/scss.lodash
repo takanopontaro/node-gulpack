@@ -9,7 +9,7 @@
   font-style: normal;
 }
 
-i, .i {
+@mixin i() {
   display: inline-block;
   font-family: "<%= fontName %>";
   font-style: normal;
@@ -24,14 +24,15 @@ i, .i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-<% _.each(glyphs, function(glyph) { %>
-  %<%= prefix %>-<%= glyph.name %> {
-    content: "\<%= glyph.unicode[0].charCodeAt(0).toString(16).toUpperCase() %>";
-  }
-<% }); %>
+%i, i, .i {
+  @include i();
+}
 
 <% _.each(glyphs, function(glyph) { %>
-  .<%= prefix %>-<%= glyph.name %>::before {
-    @extend %<%= prefix %>-<%= glyph.name %>;
+  @mixin <%= prefix %>-<%= glyph.name %>() {
+    content: "\<%= glyph.unicode[0].charCodeAt(0).toString(16).toUpperCase() %>";
+  }
+  %<%= prefix %>-<%= glyph.name %>, .<%= prefix %>-<%= glyph.name %>::before {
+    @include <%= prefix %>-<%= glyph.name %>();
   }
 <% }); %>
