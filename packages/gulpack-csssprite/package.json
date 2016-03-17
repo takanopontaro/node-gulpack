@@ -1,7 +1,7 @@
 {
   "name": "gulpack-csssprite",
   "description": "CSS sprite as a gulpack plugin.",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "takanopontaro",
   "dependencies": {
     "gulp.spritesmith": "^6.2.0",
