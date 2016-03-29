@@ -1,16 +1,19 @@
-@font-face {
-  font-family: "<%= fontName %>";
-  src: url('<%= fontPath %><%= fontName %>.eot');
-  src: url('<%= fontPath %><%= fontName %>.eot?#iefix') format('eot'),
-    url('<%= fontPath %><%= fontName %>.woff') format('woff'),
-    url('<%= fontPath %><%= fontName %>.ttf') format('truetype'),
-    url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
-  font-weight: normal;
-  font-style: normal;
+@mixin iconfont-fontface() {
+  @font-face {
+    font-family: "<%= fontName %>";
+    src: url('<%= fontPath %><%= fontName %>.eot');
+    src: url('<%= fontPath %><%= fontName %>.eot?#iefix') format('eot'),
+      url('<%= fontPath %><%= fontName %>.woff') format('woff'),
+      url('<%= fontPath %><%= fontName %>.ttf') format('truetype'),
+      url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
 }
 
-@mixin i() {
+@mixin iconfont() {
   display: inline-block;
+  vertical-align: middle;
   font-family: "<%= fontName %>";
   font-style: normal;
   font-weight: normal;
@@ -24,15 +27,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-%i, i, .i {
-  @include i();
+%iconfont {
+  @include iconfont;
 }
 
 <% _.each(glyphs, function(glyph) { %>
-  @mixin <%= prefix %>-<%= glyph.name %>() {
+  @mixin <%= prefix %><%= glyph.name %>() {
     content: "\<%= glyph.unicode[0].charCodeAt(0).toString(16).toUpperCase() %>";
   }
-  %<%= prefix %>-<%= glyph.name %>, .<%= prefix %>-<%= glyph.name %>::before {
-    @include <%= prefix %>-<%= glyph.name %>();
+
+  %<%= prefix %><%= glyph.name %> {
+    @include <%= prefix %><%= glyph.name %>;
   }
 <% }); %>
+
+@mixin iconfont-classes() {
+  @include iconfont-fontface;
+  i, .i, .iconfont {
+    @extend %iconfont;
+  }
+  <% _.each(glyphs, function(glyph) { %>
+    .<%= prefix %><%= glyph.name %>:before {
+      @extend %<%= prefix %><%= glyph.name %>;
+    }
+  <% }); %>
+}

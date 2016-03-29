@@ -9,13 +9,15 @@ gulpack.task('jade', {
   name: 'jade1',
   glob,
   dest: './tmp/jade/1',
+  beautify: false,
 });
 
 gulpack.task('jade', {
   name: 'jade2',
   glob,
   dest: './tmp/jade/2',
-  opts: { pretty: false },
+  opts: { pretty: true },
+  beautify: false,
 });
 
 gulpack.task('jade', {
@@ -30,12 +32,12 @@ gulpack.task('jade', {
 
 gulp.task('jade:test1', ['jade1'], () => {
   const path = './tmp/jade/1/a.html';
-  global._res = util.exists(path) && util.test(path, /\n/);
+  global._res = util.exists(path) && !util.test(path, /\n/);
 });
 
 gulp.task('jade:test2', ['jade2'], () => {
   const path = './tmp/jade/2/a.html';
-  global._res = util.exists(path) && !util.test(path, /\n/);
+  global._res = util.exists(path) && util.test(path, /\n/);
 });
 
 gulp.task('jade:test3', ['jade3'], () => {

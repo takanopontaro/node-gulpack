@@ -7,11 +7,12 @@ export default class extends Base {
   get defaults() {
     return this._.merge({}, super.defaults, {
       name: 'jade',
-      opts: { pretty: true, doctype: 'html' },
+      opts: { doctype: 'html' },
       extension: '.html',
       encoding: 'utf8',
       cache: true,
       minify: false,
+      beautify: true,
       datafile: null,
       onData: file => {
         const rel = path.relative('.', file.path);
@@ -20,12 +21,14 @@ export default class extends Base {
     });
   }
   get pipes() {
-    const { name, dest, opts, extension, encoding, cache, minify, datafile, onData } = this.conf;
+    const { name, dest, opts, extension, encoding, cache, minify,
+      beautify, datafile, onData } = this.conf;
     return [
       this.cache(cache, name),
       this.plumber(),
       this.if(!!datafile, this.data(onData)),
       jade(opts),
+      this.beautify(beautify),
       this.minifyHtml(minify),
       this.encode(encoding),
       this.rename({ extname: extension }),

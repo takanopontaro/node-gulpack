@@ -1,24 +1,36 @@
 {{#spritesheet}}
-  @mixin i() {
+  @mixin csssprite() {
     display: inline-block;
+    vertical-align: middle;
     background-image: url({{image}});
     background-repeat: no-repeat;
     background-size: {{half width}}px {{half height}}px;
   }
 
-  %i, i, .i {
-    @include i();
+  %csssprite {
+    @include csssprite;
   }
 {{/spritesheet}}
 
 {{#sprites}}
-  @mixin i-{{name}}() {
+  @mixin {{name}}() {
     width: {{half width}}px;
     height: {{half height}}px;
     background-position: {{half offset_x}}px {{half offset_y}}px;
   }
 
-  %i-{{name}}, .i-{{name}} {
-    @include i-{{name}}();
+  %{{name}} {
+    @include {{name}};
   }
 {{/sprites}}
+
+@mixin csssprite-classes() {
+  i, .i, .csssprite {
+    @extend %csssprite;
+  }
+  {{#sprites}}
+    .{{name}} {
+      @extend %{{name}};
+    }
+  {{/sprites}}
+}

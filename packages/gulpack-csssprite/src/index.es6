@@ -10,9 +10,13 @@ export default class extends Base {
       name: 'csssprite',
       opts: {
         imgName: 'sprite.png',
-        cssName: '_sprite.scss',
+        cssName: '_csssprite.scss',
         cssTemplate: path.join(__dirname, 'scss@2x.hbs'),
         cssHandlebarsHelpers: { half(num) { return num / 2; } },
+        cssVarMap(sprite) {
+          // eslint-disable-next-line no-param-reassign
+          sprite.name = `i-${sprite.name}`;
+        },
       },
       retina: true,
     });

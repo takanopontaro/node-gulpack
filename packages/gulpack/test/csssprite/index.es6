@@ -44,6 +44,6 @@ gulp.task('csssprite:test2', ['csssprite2'], () => {
 });
 
 gulp.task('csssprite:test3', ['csssprite3'], () => {
-  const path = './tmp/csssprite/3/_sprite.scss';
+  const path = './tmp/csssprite/3/_csssprite.scss';
   global._res = util.exists(path) && util.test(path, /-40px/);
 });

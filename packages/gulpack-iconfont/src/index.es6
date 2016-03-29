@@ -12,8 +12,8 @@ export default class extends Base {
       cache: true,
       css: {
         tmpl: path.join(__dirname, 'scss.lodash'),
-        path: './_icon.scss',
-        data: { fontPath: './', prefix: 'i' },
+        path: './_iconfont.scss',
+        data: { fontPath: './', prefix: 'i-' },
       },
     });
   }

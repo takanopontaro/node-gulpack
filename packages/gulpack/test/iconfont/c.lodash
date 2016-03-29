@@ -1,7 +1,7 @@
 !<%= prefix %>!
 
 <% _.each(glyphs, function(glyph) { %>
-  %<%= prefix %>-<%= glyph.name %> {
+  %<%= prefix %><%= glyph.name %> {
     content: "\<%= glyph.unicode[0].charCodeAt(0).toString(16).toUpperCase() %>";
   }
 <% }); %>

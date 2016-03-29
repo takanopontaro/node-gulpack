@@ -16,6 +16,7 @@ import changed from 'gulp-changed';
 import newer from 'gulp-newer';
 import rename from 'gulp-rename';
 import data from 'gulp-data';
+import beautify from 'gulp-jsbeautifier';
 import iconv from 'iconv-lite';
 import runSequence from 'run-sequence';
 import through2 from 'through2';
@@ -128,6 +129,25 @@ class Base {
     if (!arg) return through2.obj();
     if (arg === true) return minifyJs();
     return minifyJs(arg);
+  }
+  beautify(arg) {
+    if (!arg) return through2.obj();
+    if (arg === true) {
+      return beautify({
+        indent_size: 2,
+        preserve_newlines: true,
+        max_preserve_newlines: 9999,
+        end_with_newline: true,
+        wrap_line_length: 0,
+        css: {
+          selector_separator_newline: true,
+        },
+        html: {
+          extra_liners: [],
+        },
+      });
+    }
+    return beautify(arg);
   }
   cache(arg, name) {
     if (!arg) return through2.obj();
