@@ -1,7 +1,7 @@
 {
   "name": "gulpack-webpack",
   "description": "Webpack as a gulpack plugin.",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "author": "takanopontaro",
   "dependencies": {
     "babel-core": "^6.7.0",
