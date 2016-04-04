@@ -29,7 +29,7 @@ gulpack.task('webpack', {
     module: {
       loaders: [
         {
-          test: /\.es6$/,
+          test: /\.es\d*$/,
           loader: 'babel',
           query: {
             presets: ['es2015'],

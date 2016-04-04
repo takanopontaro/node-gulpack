@@ -1,3 +1,3 @@
-const c = require('./c.es6');
+const c = require('./c.es');
 
 alert('b');

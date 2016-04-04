@@ -13,7 +13,7 @@ export default class extends Base {
       css: {
         tmpl: path.join(__dirname, 'scss.lodash'),
         path: './_iconfont.scss',
-        data: { fontPath: './', prefix: 'i-' },
+        data: { fontPath: './', prefix: 'i-', base: 'i, .i' },
       },
     });
   }

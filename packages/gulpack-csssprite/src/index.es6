@@ -14,8 +14,10 @@ export default class extends Base {
         cssTemplate: path.join(__dirname, 'scss@2x.hbs'),
         cssHandlebarsHelpers: { half(num) { return num / 2; } },
         cssVarMap(sprite) {
-          // eslint-disable-next-line no-param-reassign
+          /* eslint-disable no-param-reassign */
           sprite.name = `i-${sprite.name}`;
+          sprite._base = 'i, .i';
+          /* eslint-enable */
         },
       },
       retina: true,

@@ -6,13 +6,15 @@ export default class extends Base {
   get defaults() {
     return this._.merge({}, super.defaults, {
       name: 'babel',
-      opts: {},
+      opts: { presets: ['es2015'] },
+      loose: false,
       sourcemap: false,
       minify: false,
     });
   }
   get pipes() {
-    const { dest, opts, sourcemap, minify } = this.conf;
+    const { dest, opts, loose, sourcemap, minify } = this.conf;
+    if (loose) opts.presets = ['es2015-loose'];
     return [
       this.plumber(),
       this.sourcemap(sourcemap, 'init'),

@@ -7,7 +7,14 @@ export default class extends Base {
   get defaults() {
     return this._.merge({}, super.defaults, {
       name: 'webpack',
-      opts: { output: { filename: '[name].js' } },
+      opts: {
+        output: {
+          filename: '[name].js',
+        },
+        resolve: {
+          extensions: ['', '.webpack.js', '.web.js', '.js', '.es', '.es6'],
+        },
+      },
       cache: true,
       sourcemap: false,
       minify: false,
@@ -52,17 +59,28 @@ export default class extends Base {
     return silent ? () => {} : null;
   }
   getBabel() {
-    const { babel } = this.conf;
-    if (!babel) return {};
-    const opts = this.optify(babel, {
-      test: /\.(?:js|es6)$/,
+    let { babel } = this.conf;
+    const defaults = {
+      test: /\.(js|es\d*)$/,
       exclude: /(node_modules|bower_components)/,
       loader: 'babel',
       query: {
         presets: ['es2015'],
         cacheDirectory: true,
       },
-    });
+    };
+    switch (true) {
+      case this._.isPlainObject(babel):
+      case (babel === true):
+        break;
+      case (babel === 'loose'):
+        defaults.query.presets = ['es2015-loose'];
+        babel = true;
+        break;
+      default:
+        return {};
+    }
+    const opts = this.optify(babel, defaults);
     return { module: { loaders: [opts] } };
   }
   getCommons() {

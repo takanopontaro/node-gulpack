@@ -2,3 +2,9 @@ sourcemap
 uglify
 cache
 transform: translate(9px,-54px);
+
+jadeで_のとき全コンパイル
+jadeでextendsのとき全コンパイル
+babelとwebpackでesの拡張子を有効にする、loosemodeオプションを入れる
+webpackのbuiltinの引数を考える
+全ソースをesに

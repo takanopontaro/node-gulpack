@@ -22,6 +22,7 @@ gulpack.task('babel', {
   name: 'babel3',
   glob,
   dest: './tmp/babel/3',
+  loose: true,
   minify: true,
 });
 

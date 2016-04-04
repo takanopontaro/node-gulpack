@@ -43,7 +43,7 @@
 
 @mixin iconfont-classes() {
   @include iconfont-fontface;
-  i, .i, .iconfont {
+  <%= base %> {
     @extend %iconfont;
   }
   <% _.each(glyphs, function(glyph) { %>

@@ -25,7 +25,7 @@
 {{/sprites}}
 
 @mixin csssprite-classes() {
-  i, .i, .csssprite {
+  {{sprites.[0]._base}} {
     @extend %csssprite;
   }
   {{#sprites}}
