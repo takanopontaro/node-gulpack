@@ -75,6 +75,10 @@ export default class extends Base {
         break;
       case (babel === 'loose'):
         defaults.query.presets = ['es2015-loose'];
+        defaults.query.plugins = [
+          'transform-es3-member-expression-literals',
+          'transform-es3-property-literals',
+        ];
         babel = true;
         break;
       default:

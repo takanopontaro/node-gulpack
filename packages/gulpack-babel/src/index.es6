@@ -14,7 +14,14 @@ export default class extends Base {
   }
   get pipes() {
     const { dest, opts, loose, sourcemap, minify } = this.conf;
-    if (loose) opts.presets = ['es2015-loose'];
+    if (loose) {
+      (opts.presets = opts.presets || []).push('es2015-loose');
+      this._.pull(opts.presets, 'es2015');
+      (opts.plugins = opts.plugins || []).push(
+        'transform-es3-member-expression-literals',
+        'transform-es3-property-literals'
+      );
+    }
     return [
       this.plumber(),
       this.sourcemap(sourcemap, 'init'),
