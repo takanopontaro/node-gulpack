@@ -16,7 +16,8 @@ export default class extends Base {
       datafile: null,
       onData: file => {
         const rel = path.relative('.', file.path);
-        return this.getData(this.conf.name)[rel];
+        const json = this.getData(this.conf.name);
+        return this._.find(json, (val, key) => new RegExp(key).test(rel));
       },
     });
   }
