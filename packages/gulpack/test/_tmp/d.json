@@ -1,0 +1,8 @@
+{
+  "*": {
+    "fuga": "this is local"
+  },
+  "a.jade": {
+    "hoge": "fuga"
+  }
+}

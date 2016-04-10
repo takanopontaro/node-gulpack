@@ -15,7 +15,6 @@ export default class extends Base {
     return [
       this.cache(cache, name),
       this.plumber(),
-      // this.changed(dest),
       imagemin(opts),
       this.gulp.dest(dest),
     ];

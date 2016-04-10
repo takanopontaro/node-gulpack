@@ -1,22 +1,17 @@
 import 'colors';
 import _ from 'lodash';
+import debug from 'gulp-debug';
 import util from 'gulp-util';
 import tap from 'gulp-tap';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
-import hrtime from 'pretty-hrtime';
 import gulpif from 'gulp-if';
+import match from 'gulp-match';
 import sourcemaps from 'gulp-sourcemaps';
 import minifyHtml from 'gulp-htmlmin';
 import minifyCss from 'gulp-clean-css';
 import minifyJs from 'gulp-uglify';
-import ignore from 'gulp-ignore';
 import cache from 'gulp-cached';
-import changed from 'gulp-changed';
-import newer from 'gulp-newer';
-import rename from 'gulp-rename';
-import data from 'gulp-data';
-import beautify from 'gulp-jsbeautifier';
 import iconv from 'iconv-lite';
 import runSequence from 'run-sequence';
 import through2 from 'through2';
@@ -50,6 +45,10 @@ class Base {
   setData(key, val) {
     return (_data[key] = val);
   }
+  getChangedFile(name) {
+    const obj = this.getData('watch');
+    return obj ? obj[name] : undefined;
+  }
   getConf(conf) {
     return _.merge({}, this.defaults, conf);
   }
@@ -66,12 +65,6 @@ class Base {
     for (const pipe of this.pipes) stream = stream.pipe(pipe);
     if (onEnd) stream.on('end', onEnd.bind(this));
     return stream;
-  }
-  start() {
-    this._hrtime = process.hrtime();
-  }
-  stop() {
-    this.hrtime = hrtime(process.hrtime(this._hrtime));
   }
   plumber() {
     return plumber({
@@ -130,39 +123,16 @@ class Base {
     if (arg === true) return minifyJs();
     return minifyJs(arg);
   }
-  beautify(arg) {
-    if (!arg) return through2.obj();
-    if (arg === true) {
-      return beautify({
-        indent_size: 2,
-        preserve_newlines: true,
-        max_preserve_newlines: 9999,
-        end_with_newline: true,
-        wrap_line_length: 0,
-        css: {
-          selector_separator_newline: true,
-        },
-        html: {
-          extra_liners: [],
-        },
-      });
-    }
-    return beautify(arg);
-  }
   cache(arg, name) {
     if (!arg) return through2.obj();
-    if (arg === true) return cache(name);
-    return cache(name, arg);
+    const stream = (arg === true) ? cache(name) : cache(name, arg);
+    return gulpif(this.isMatchForce.bind(this), through2.obj(), stream);
   }
-  changed(dest, arg) {
-    if (!arg) return changed(dest);
-    return changed(dest, arg);
-  }
-  exclude(cond, opts) {
-    return ignore.exclude(cond, opts);
-  }
-  include(cond, opts) {
-    return ignore.include(cond, opts);
+  isMatchForce() {
+    const { force } = this.conf;
+    const file = this.getChangedFile(this.conf.name);
+    if (!force || !file) return false;
+    return match(file, force);
   }
   encode(arg) {
     return tap(file => {
@@ -173,6 +143,6 @@ class Base {
   }
 }
 
-_.extend(Base.prototype, { util, _, if: gulpif, newer, rename, through2, data });
+_.extend(Base.prototype, { util, _, if: gulpif, debug });
 
 export default Base;

@@ -1,6 +1,7 @@
 import path from 'path';
 import iconfont from 'gulp-iconfont';
 import consolidate from 'gulp-consolidate';
+import rename from 'gulp-rename';
 import Base from 'gulpack-base';
 
 
@@ -35,7 +36,7 @@ export default class extends Base {
       const data = this._.merge({}, css.data, { glyphs, fontName: opts.fontName });
       this.gulp.src(css.tmpl)
         .pipe(consolidate('lodash', data))
-        .pipe(this.rename(info.base))
+        .pipe(rename(info.base))
         .pipe(this.gulp.dest(info.dir))
         .on('finish', asyncr);
     });
