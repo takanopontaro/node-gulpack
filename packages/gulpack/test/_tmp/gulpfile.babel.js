@@ -6,7 +6,7 @@ const data = require('./global.json');
 gulpack.init(gulp);
 
 const jade = gulpack.task('jade', {
-  glob: ['**/*.jade', '**/*.json'],// TODO: ./で書きたい…
+  glob: ['**/*.jade'],// TODO: ./で書きたい…
   // force: /(_.*\.jade|\.json)$/,
   // force: ['**/_*.jade', '**/*.json'],
   // force: changed => {
