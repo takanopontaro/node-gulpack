@@ -1,11 +1,11 @@
 {
   "name": "gulpack-imagemin",
   "description": "Imagemin as a gulpack plugin.",
-  "version": "2.0.1",
+  "version": "2.0.7",
   "author": "takanopontaro",
   "dependencies": {
     "gulp-imagemin": "^2.4.0",
-    "gulpack-base": "^2.0.1"
+    "gulpack-base": "^2.0.7"
   },
   "devDependencies": {},
   "files": [

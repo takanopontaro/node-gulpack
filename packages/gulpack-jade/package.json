@@ -1,7 +1,7 @@
 {
   "name": "gulpack-jade",
   "description": "Jade as a gulpack plugin.",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "author": "takanopontaro",
   "dependencies": {
     "gulp-data": "^1.2.1",
@@ -9,7 +9,7 @@
     "gulp-jade": "^1.1.0",
     "gulp-jsbeautifier": "^2.0.3",
     "gulp-rename": "^1.2.2",
-    "gulpack-base": "^2.0.3"
+    "gulpack-base": "^2.0.7"
   },
   "devDependencies": {},
   "files": [
