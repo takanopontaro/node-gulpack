@@ -13,6 +13,7 @@
 
 @mixin iconfont() {
   display: inline-block;
+  overflow: hidden;
   vertical-align: middle;
   font-family: "<%= fontName %>";
   font-style: normal;

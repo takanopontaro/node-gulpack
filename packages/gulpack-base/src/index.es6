@@ -2,7 +2,6 @@ import 'colors';
 import _ from 'lodash';
 import debug from 'gulp-debug';
 import util from 'gulp-util';
-import tap from 'gulp-tap';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
 import gulpif from 'gulp-if';
@@ -12,7 +11,6 @@ import minifyHtml from 'gulp-htmlmin';
 import minifyCss from 'gulp-clean-css';
 import minifyJs from 'gulp-uglify';
 import cache from 'gulp-cached';
-import iconv from 'iconv-lite';
 import runSequence from 'run-sequence';
 import through2 from 'through2';
 
@@ -133,13 +131,6 @@ class Base {
     const file = this.getChangedFile(this.conf.name);
     if (!force || !file) return false;
     return match(file, force);
-  }
-  encode(arg) {
-    return tap(file => {
-      const enc = _.isFunction(arg) ? arg(file) : arg;
-      // eslint-disable-next-line no-param-reassign
-      file.contents = iconv.encode(file.contents.toString(), enc);
-    });
   }
 }
 

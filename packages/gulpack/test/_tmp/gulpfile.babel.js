@@ -25,7 +25,7 @@ const jade = gulpack.task('jade', {
   // ignore: ['./d.json'],
   // glob: './*.jade',
   dest: '.',
-  datafile: 'd.json',
+  datafile: ['d.json', 'global.json'],
 });
 
 gulpack.task('watch', {

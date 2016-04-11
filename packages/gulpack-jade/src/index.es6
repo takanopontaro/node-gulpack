@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import through2 from 'through2';
+import iconv from 'iconv-lite';
 import jade from 'gulp-jade';
 import tap from 'gulp-tap';
 import data from 'gulp-data';
@@ -43,10 +44,10 @@ export default class extends Base {
       });
     }
     return [
-      this.loadData(),
       exclude(this.conf.exclude),
       this.cache(cache, name),
       // this.debug(),
+      this.loadData(),
       this.plumber(),
       this.if(!!datafile, data(onData)),
       jade(opts),
@@ -74,17 +75,39 @@ export default class extends Base {
       this.gulp.dest(dest),
     ];
   }
+  constructor(gulp, conf) {
+    super(gulp, conf);
+    this._ctime = {};
+  }
   loadData() {
     const { name, datafile } = this.conf;
     if (!datafile) return through2.obj();
+    const files = this._.castArray(datafile);
     return tap(() => {
-      const time = fs.statSync(datafile).ctime.getTime();
-      if (time !== this._ctime) {
-        const json = require(path.resolve(datafile));
-        this.setData(name, json);
-        this._ctime = time;
-        this.util.log(`gulpack-jade: Reloaded ${datafile}`);
-      }
+      let found = false;
+      files.forEach(file => {
+        const time = fs.statSync(file).ctime.getTime();
+        if (time !== this._ctime[file]) {
+          found = true;
+          this._ctime[file] = time;
+          this.util.log(`gulpack-jade: Reloaded ${file}`);
+        }
+      });
+      if (!found) return;
+      const json = {};
+      files.forEach(file => {
+        const abs = path.resolve(file);
+        delete require.cache[abs];
+        this._.merge(json, require(abs));
+      });
+      this.setData(name, json);
+    });
+  }
+  encode(arg) {
+    return tap(file => {
+      const enc = this._.isFunction(arg) ? arg(file) : arg;
+      // eslint-disable-next-line no-param-reassign
+      file.contents = iconv.encode(file.contents.toString(), enc);
     });
   }
 }
