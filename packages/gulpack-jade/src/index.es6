@@ -7,7 +7,7 @@ import tap from 'gulp-tap';
 import data from 'gulp-data';
 import rename from 'gulp-rename';
 import { exclude } from 'gulp-ignore';
-import beautify from 'gulp-jsbeautifier';
+import prettify from 'gulp-jsbeautifier';
 import Base from 'gulpack-base';
 
 
@@ -36,22 +36,16 @@ export default class extends Base {
     });
   }
   get pipes() {
-    const { name, dest, opts, extension, encoding, cache, minify, beautify: beau,
+    const { name, dest, opts, extension, encoding, cache, minify, beautify,
       datafile, onData } = this.conf;
-    if (datafile) {
-      ['glob', 'exclude', 'force'].forEach(key => {
-        this.conf[key] = this._.castArray(this.conf[key] || []).concat(datafile);
-      });
-    }
     return [
       exclude(this.conf.exclude),
       this.cache(cache, name),
-      // this.debug(),
       this.loadData(),
       this.plumber(),
       this.if(!!datafile, data(onData)),
       jade(opts),
-      this.if(beau, beautify(this.optify(beau, {
+      this.if(beautify, prettify(this.optify(beautify, {
         indent_size: 2,
         preserve_newlines: true,
         max_preserve_newlines: 9999,
@@ -78,6 +72,16 @@ export default class extends Base {
   constructor(gulp, conf) {
     super(gulp, conf);
     this._ctime = {};
+  }
+  getConf(conf) {
+    const conf2 = super.getConf(conf);
+    const { datafile } = conf2;
+    if (datafile) {
+      ['glob', 'exclude', 'force'].forEach(key => {
+        conf2[key] = this._.castArray(conf2[key] || []).concat(datafile);
+      });
+    }
+    return conf2;
   }
   loadData() {
     const { name, datafile } = this.conf;

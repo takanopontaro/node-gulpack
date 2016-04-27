@@ -25,7 +25,7 @@ class Base {
       onEnd: null,
       glob: '',
       dest: '',
-      srcOpts: {},
+      srcOpts: { base: '.' },
     };
   }
   get pipes() {
@@ -130,6 +130,7 @@ class Base {
     const { force } = this.conf;
     const file = this.getChangedFile(this.conf.name);
     if (!force || !file) return false;
+    file.base = '.';
     return match(file, force);
   }
 }
