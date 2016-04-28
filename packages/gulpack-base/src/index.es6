@@ -1,11 +1,11 @@
 import 'colors';
+import path from 'path';
 import _ from 'lodash';
 import debug from 'gulp-debug';
 import util from 'gulp-util';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
 import gulpif from 'gulp-if';
-import match from 'gulp-match';
 import sourcemaps from 'gulp-sourcemaps';
 import minifyHtml from 'gulp-htmlmin';
 import minifyCss from 'gulp-clean-css';
@@ -13,6 +13,7 @@ import minifyJs from 'gulp-uglify';
 import cache from 'gulp-cached';
 import runSequence from 'run-sequence';
 import through2 from 'through2';
+import minimatch from 'minimatch'
 
 
 const _data = {};
@@ -25,7 +26,7 @@ class Base {
       onEnd: null,
       glob: '',
       dest: '',
-      srcOpts: { base: '.' },
+      srcOpts: {},
     };
   }
   get pipes() {
@@ -130,8 +131,8 @@ class Base {
     const { force } = this.conf;
     const file = this.getChangedFile(this.conf.name);
     if (!force || !file) return false;
-    file.base = '.';
-    return match(file, force);
+    const rel = path.relative('.', file.path);
+    return force.some(pattern => minimatch(rel, pattern));
   }
 }
 

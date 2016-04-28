@@ -3,19 +3,19 @@ import gulpack from 'gulpack';
 import util from '../util.es6';
 
 
-const glob = './test/jade/a.jade';
+const glob = 'test/jade/a.jade';
 
 gulpack.task('jade', {
   name: 'jade1',
   glob,
-  dest: './tmp/jade/1',
+  dest: 'tmp/jade/1',
   beautify: false,
 });
 
 gulpack.task('jade', {
   name: 'jade2',
   glob,
-  dest: './tmp/jade/2',
+  dest: 'tmp/jade/2',
   opts: { pretty: true },
   beautify: false,
 });
@@ -23,11 +23,11 @@ gulpack.task('jade', {
 gulpack.task('jade', {
   name: 'jade3',
   glob,
-  dest: './tmp/jade/3',
+  dest: 'tmp/jade/3',
   extension: '.htm',
   encoding: 'sjis',
   minify: true,
-  datafile: './test/jade/b.json',
+  datafile: 'test/jade/b.json',
 });
 
 gulp.task('jade:test1', ['jade1'], () => {

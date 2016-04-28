@@ -12,6 +12,7 @@
     "gulp-tap": "^0.1.3",
     "gulpack-base": "^2.0.9",
     "iconv-lite": "^0.4.13",
+    "minimatch": "^3.0.0",
     "through2": "^2.0.1"
   },
   "devDependencies": {},

@@ -2,11 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import through2 from 'through2';
 import iconv from 'iconv-lite';
+import minimatch from 'minimatch'
 import jade from 'gulp-jade';
 import tap from 'gulp-tap';
 import data from 'gulp-data';
 import rename from 'gulp-rename';
-import { exclude } from 'gulp-ignore';
+import ignore from 'gulp-ignore';
 import prettify from 'gulp-jsbeautifier';
 import Base from 'gulpack-base';
 
@@ -37,9 +38,13 @@ export default class extends Base {
   }
   get pipes() {
     const { name, dest, opts, extension, encoding, cache, minify, beautify,
-      datafile, onData } = this.conf;
+      datafile, onData, exclude } = this.conf;
     return [
-      exclude(this.conf.exclude),
+      ignore.exclude(file => {
+        if (!exclude) return false;
+        const rel = path.relative('.', file.path);
+        return exclude.some(pattern => minimatch(rel, pattern));
+      }),
       this.cache(cache, name),
       this.loadData(),
       this.plumber(),
