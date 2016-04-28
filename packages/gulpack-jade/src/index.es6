@@ -29,10 +29,10 @@ export default class extends Base {
         const rel = path.relative('.', file.path);
         const json = this.getData(this.conf.name);
         const local = this._.find(json, (val, key) => {
-          if (key === '*') return false;
+          if (key === '') return false;
           return new RegExp(key).test(rel);
         });
-        return this._.merge({}, json['*'], local);
+        return this._.merge({}, json[''], local);
       },
     });
   }
