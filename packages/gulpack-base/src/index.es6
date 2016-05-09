@@ -13,7 +13,7 @@ import minifyJs from 'gulp-uglify';
 import cache from 'gulp-cached';
 import runSequence from 'run-sequence';
 import through2 from 'through2';
-import minimatch from 'minimatch'
+import minimatch from 'minimatch';
 
 
 const _data = {};

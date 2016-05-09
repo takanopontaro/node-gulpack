@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import through2 from 'through2';
 import iconv from 'iconv-lite';
-import minimatch from 'minimatch'
+import minimatch from 'minimatch';
 import jade from 'gulp-jade';
 import tap from 'gulp-tap';
 import data from 'gulp-data';
@@ -81,11 +81,11 @@ export default class extends Base {
   getConf(conf) {
     const conf2 = super.getConf(conf);
     const { datafile } = conf2;
-    if (datafile) {
-      ['glob', 'exclude', 'force'].forEach(key => {
-        conf2[key] = this._.castArray(conf2[key] || []).concat(datafile);
-      });
-    }
+    const params = ['glob', 'exclude', 'force'];
+    params.forEach(key => {
+      if (conf2[key]) conf2[key] = this._.castArray(conf2[key]);
+      if (datafile) conf2[key] = (conf2[key] || []).concat(datafile);
+    });
     return conf2;
   }
   loadData() {
