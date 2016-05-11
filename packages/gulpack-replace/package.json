@@ -1,11 +1,11 @@
 {
   "name": "gulpack-replace",
   "description": "Replace as a gulpack plugin.",
-  "version": "2.0.0",
+  "version": "2.0.13",
   "author": "takanopontaro",
   "dependencies": {
     "gulp-replace": "^0.5.4",
-    "gulpack-base": "^2.0.1"
+    "gulpack-base": "^2.0.13"
   },
   "devDependencies": {},
   "files": [

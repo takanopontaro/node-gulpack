@@ -1,14 +1,14 @@
 {
   "name": "gulpack",
   "description": "A wrapper of gulp plugins for easy-to-use.",
-  "version": "2.0.10",
+  "version": "2.0.13",
   "author": "takanopontaro",
   "dependencies": {},
   "devDependencies": {
-    "gulpack": "^2.0.10",
+    "gulpack": "^2.0.13",
     "gulpack-babel": "^2.0.4",
     "gulpack-copy": "^2.0.1",
-    "gulpack-jade": "^2.0.10",
+    "gulpack-jade": "^2.0.13",
     "gulpack-sass": "^2.0.2",
     "gulpack-webpack": "^2.0.4",
     "gulpack-imagemin": "^2.0.7",
@@ -20,7 +20,7 @@
     "gulpack-iconfont": "^2.0.9",
     "gulpack-sassimporter": "^2.0.1",
     "gulpack-svgsprite": "^2.0.1",
-    "gulpack-replace": "^2.0.0"
+    "gulpack-replace": "^2.0.13"
   },
   "files": [
     "dist/index.js"
