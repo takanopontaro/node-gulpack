@@ -1,0 +1,25 @@
+{
+  "name": "gulpack-replace",
+  "description": "Replace as a gulpack plugin.",
+  "version": "2.0.0",
+  "author": "takanopontaro",
+  "dependencies": {
+    "gulp-replace": "^0.5.4",
+    "gulpack-base": "^2.0.1"
+  },
+  "devDependencies": {},
+  "files": [
+    "dist/index.js"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpack",
+    "replace"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-replace"
+  }
+}

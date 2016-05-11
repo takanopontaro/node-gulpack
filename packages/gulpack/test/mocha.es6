@@ -113,4 +113,8 @@ describe('gulpack', function () {
     { spec: 'test1', desc: 'published' },
     { spec: 'test2', desc: 'published with options and config' },
   ]);
+
+  _describe('replace', [
+    { spec: 'test1', desc: 'replaced' },
+  ]);
 });

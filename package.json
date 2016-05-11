@@ -9,8 +9,9 @@
     "babel-preset-es2015-loose": "^7.0.0",
     "chalk": "^1.1.1",
     "del": "^2.2.0",
-    "eslint": "^2.3.0",
-    "eslint-config-airbnb": "^6.1.0",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.7.0",
     "fixpack": "^2.3.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
@@ -30,13 +31,13 @@
     "webpack-stream": "^3.1.0"
   },
   "license": "MIT",
-  "private": true,
   "scripts": {
     "build": "NODE_ENV=production gulp",
+    "dev": "NODE_ENV=development gulp watch",
     "fixpack": "fixpack",
     "lerna": "lerna",
     "lint": "eslint packages/*/src/*.es6",
-    "ncu": "ncu",
+    "ncu": "ncu -au",
     "start": "NODE_ENV=production gulp watch",
     "test": "mocha --compilers js:babel-register packages/gulpack/test/mocha.es6"
   }

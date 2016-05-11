@@ -19,7 +19,8 @@
     "gulpack-del": "^2.0.1",
     "gulpack-iconfont": "^2.0.9",
     "gulpack-sassimporter": "^2.0.1",
-    "gulpack-svgsprite": "^2.0.1"
+    "gulpack-svgsprite": "^2.0.1",
+    "gulpack-replace": "^2.0.0"
   },
   "files": [
     "dist/index.js"
