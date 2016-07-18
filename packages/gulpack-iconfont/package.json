@@ -1,7 +1,7 @@
 {
   "name": "gulpack-iconfont",
   "description": "Iconfont as a gulpack plugin.",
-  "version": "2.0.9",
+  "version": "2.0.14",
   "author": "takanopontaro",
   "dependencies": {
     "gulp-consolidate": "^0.2.0",
