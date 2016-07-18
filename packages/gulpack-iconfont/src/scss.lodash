@@ -12,6 +12,8 @@
 }
 
 @mixin iconfont() {
+  width: 1em;
+  height: 1em;
   display: inline-block;
   overflow: hidden;
   vertical-align: middle;
