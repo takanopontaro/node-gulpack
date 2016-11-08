@@ -1,0 +1,33 @@
+{
+  "name": "gulpack-pug",
+  "description": "Pug as a gulpack plugin.",
+  "version": "2.0.0",
+  "author": "takanopontaro",
+  "dependencies": {
+    "gulp-data": "^1.2.1",
+    "gulp-ignore": "^2.0.1",
+    "gulp-jsbeautifier": "^2.0.3",
+    "gulp-pug": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-tap": "^0.1.3",
+    "gulpack-base": "^2.0.13",
+    "iconv-lite": "^0.4.13",
+    "minimatch": "^3.0.0",
+    "through2": "^2.0.1"
+  },
+  "devDependencies": {},
+  "files": [
+    "dist/index.js"
+  ],
+  "keywords": [
+    "gulp",
+    "gulpack",
+    "pug"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takanopontaro/node-gulpack/tree/master/packages/gulpack-pug"
+  }
+}

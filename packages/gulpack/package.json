@@ -9,6 +9,7 @@
     "gulpack-babel": "^2.0.4",
     "gulpack-copy": "^2.0.1",
     "gulpack-jade": "^2.0.13",
+    "gulpack-pug": "^2.0.0",
     "gulpack-sass": "^2.0.2",
     "gulpack-webpack": "^2.0.4",
     "gulpack-imagemin": "^2.0.7",

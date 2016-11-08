@@ -59,6 +59,12 @@ describe('gulpack', function () {
     { spec: 'test3', desc: 'compiled with config' },
   ]);
 
+  _describe('pug', [
+    { spec: 'test1', desc: 'compiled' },
+    { spec: 'test2', desc: 'compiled with options' },
+    { spec: 'test3', desc: 'compiled with config' },
+  ]);
+
   _describe('sass', [
     { spec: 'test1', desc: 'compiled' },
     { spec: 'test2', desc: 'compiled with options' },

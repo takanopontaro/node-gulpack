@@ -1,0 +1,5 @@
+{
+  "test/pug/a.pug": {
+    "hoge": "fuga"
+  }
+}
