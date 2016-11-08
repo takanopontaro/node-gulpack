@@ -27,6 +27,7 @@ gulpack.task('pug', {
   extension: '.htm',
   encoding: 'sjis',
   minify: true,
+  puggy: true,
   datafile: 'test/pug/b.json',
 });
 

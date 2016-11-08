@@ -3,6 +3,8 @@ import path from 'path';
 import through2 from 'through2';
 import iconv from 'iconv-lite';
 import minimatch from 'minimatch';
+import pugNpm from 'pug';
+import puggy from 'puggy';
 import pug from 'gulp-pug';
 import tap from 'gulp-tap';
 import data from 'gulp-data';
@@ -14,7 +16,7 @@ import Base from 'gulpack-base';
 
 export default class extends Base {
   get defaults() {
-    return this._.merge({}, super.defaults, {
+    const conf = this._.merge({}, super.defaults, {
       name: 'pug',
       opts: { doctype: 'html' },
       extension: '.html',
@@ -25,6 +27,7 @@ export default class extends Base {
       datafile: null,
       exclude: false,
       force: false,
+      puggy: false,
       onData: file => {
         const rel = path.relative('.', file.path);
         const json = this.getData(this.conf.name);
@@ -35,6 +38,11 @@ export default class extends Base {
         return this._.merge({}, json[''], local);
       },
     });
+    if (conf.puggy) {
+      puggy.init(pugNpm, conf.opts);
+      conf.opts.pug = pugNpm;
+    }
+    return conf;
   }
   get pipes() {
     const { name, dest, opts, extension, encoding, cache, minify, beautify,
