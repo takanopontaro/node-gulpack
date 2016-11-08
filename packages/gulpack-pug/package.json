@@ -1,7 +1,7 @@
 {
   "name": "gulpack-pug",
   "description": "Pug as a gulpack plugin.",
-  "version": "2.0.0",
+  "version": "2.0.16",
   "author": "takanopontaro",
   "dependencies": {
     "gulp-data": "^1.2.1",
