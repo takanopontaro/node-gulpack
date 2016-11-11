@@ -10,13 +10,11 @@ export default class extends Base {
         shape: { id: { generator: 'i-%s' } },
         mode: { symbol: { dest: '', sprite: 'sprite.svg' } },
       },
-      cache: true,
     });
   }
   get pipes() {
-    const { name, dest, opts, cache } = this.conf;
+    const { dest, opts } = this.conf;
     return [
-      this.cache(cache, name),
       this.plumber(),
       svgSprite(opts),
       this.gulp.dest(dest),
