@@ -10,7 +10,6 @@ export default class extends Base {
     return this._.merge({}, super.defaults, {
       name: 'iconfont',
       opts: { fontName: 'icon' },
-      cache: true,
       css: {
         tmpl: path.join(__dirname, 'scss.lodash'),
         path: './_iconfont.scss',
@@ -19,9 +18,8 @@ export default class extends Base {
     });
   }
   get pipes() {
-    const { name, opts, cache } = this.conf;
+    const { opts } = this.conf;
     return [
-      this.cache(cache, name),
       this.plumber(),
       iconfont(opts),
     ];
